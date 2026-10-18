@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>com.craftzdog.solarizedosaka</id>
+    <name>Solarized Osaka</name>
+    <version>1.1.0</version>
+    <vendor url="https://github.com/craftzdog/solarized-osaka.nvim">craftzdog inspired</vendor>
+
+    <description><![CDATA[
+        <h2>Solarized Osaka</h2>
+        <p>A clean, dark (and light) Solarized-inspired theme for all JetBrains IDEs.</p>
+        <p><b>Inspired by</b> the Neovim theme
+        <a href="https://github.com/craftzdog/solarized-osaka.nvim">solarized-osaka.nvim</a>
+        by craftzdog.</p>
+        <p>Features slightly brightened base colors for modern displays and a rich accent palette.</p>
+        <h3>Themes included</h3>
+        <ul>
+          <li><b>Solarized Osaka</b> – Classic Dark</li>
+          <li><b>Solarized Osaka Light</b> – Classic Light</li>
+          <li><b>Solarized Osaka Islands</b> – Dark for Islands UI (2025.3+)</li>
+          <li><b>Solarized Osaka Islands Light</b> – Light for Islands UI (2025.3+)</li>
+        </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>1.1.0</h3>
+        <ul>
+          <li>Added <b>Solarized Osaka Islands</b> (Dark) for JetBrains Islands UI</li>
+          <li>Added <b>Solarized Osaka Islands Light</b> for JetBrains Islands UI</li>
+          <li>Classic themes still included for older IDEs</li>
+        </ul>
+        <h3>1.0.0</h3>
+        <ul>
+          <li>Initial release – full UI + editor schemes for Dark and Light</li>
+          <li>Accurate palette from solarized-osaka.nvim by craftzdog</li>
+          <li>Inspired by craftzdog's Solarized Osaka theme</li>
+        </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="223"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Classic UI themes -->
+        <themeProvider id="com.craftzdog.solarizedosaka.dark"
+                       path="/themes/SolarizedOsaka.theme.json"/>
+        <themeProvider id="com.craftzdog.solarizedosaka.light"
+                       path="/themes/SolarizedOsakaLight.theme.json"/>
+
+        <!-- Islands UI themes (2025.3+) -->
+        <themeProvider id="com.craftzdog.solarizedosaka.islands.dark"
+                       path="/themes/SolarizedOsakaIslands.theme.json"
+                       targetUi="islands"/>
+        <themeProvider id="com.craftzdog.solarizedosaka.islands.light"
+                       path="/themes/SolarizedOsakaIslandsLight.theme.json"
+                       targetUi="islands"/>
+    </extensions>
+</idea-plugin>
