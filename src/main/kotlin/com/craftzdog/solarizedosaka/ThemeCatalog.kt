@@ -31,10 +31,12 @@ object ThemeCatalog {
 
     fun current(): UIThemeLookAndFeelInfo? = LafManager.getInstance().currentUIThemeLookAndFeel
 
+    @Suppress("DEPRECATION")
     fun all(): List<UIThemeLookAndFeelInfo> =
-        LafManager.getInstance().installedThemes.filter { it.name.startsWith(CLASSIC_PREFIX) }
+        LafManager.getInstance().installedLookAndFeels
+            .filterIsInstance<UIThemeLookAndFeelInfo>()
+            .filter { it.name.startsWith(CLASSIC_PREFIX) }
             .sortedBy { it.name }
-            .toList()
 
     fun removedPresetReplacement(name: String): String = when (name) {
         "Solarized Osaka Glass" -> "Solarized Osaka Quiet UI"

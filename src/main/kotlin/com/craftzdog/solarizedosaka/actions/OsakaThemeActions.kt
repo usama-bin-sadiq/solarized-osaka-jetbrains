@@ -7,7 +7,7 @@ import com.intellij.ide.ui.LafManager
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.fileEditor.FileEditorManager
+import com.craftzdog.solarizedosaka.PlatformFileEditors
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.options.ShowSettingsUtil
 import com.intellij.openapi.project.DumbAware
@@ -85,7 +85,7 @@ class OpenOsakaPreviewAction : AnAction(), DumbAware {
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
-        val manager = FileEditorManager.getInstance(project)
+        val manager = PlatformFileEditors.get(project)
         val typeManager = FileTypeManager.getInstance()
         val sorted = samples.sortedBy { it.name.substringAfterLast('.').lowercase() }
         val chooser = JComboBox(sorted.toTypedArray())

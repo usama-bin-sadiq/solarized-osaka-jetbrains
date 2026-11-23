@@ -104,3 +104,5 @@ tasks {
         gradleVersion = "8.13"
     }
 }
+
+tasks.withType<JavaCompile>().configureEach { options.release.set(21) }

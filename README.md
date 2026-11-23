@@ -84,9 +84,9 @@ Requires JDK 21. The repository includes a Gradle 8.13 wrapper:
 ./gradlew buildPlugin
 ```
 
-The plugin archive is written under `build/distributions/`. CI checks theme assets, contrast and plugin compatibility for the six IDE targets in the verification workflow.
+The plugin archive is written under `build/distributions/`. CI checks theme assets, contrast and plugin compatibility for the seven IDE targets in the verification workflow.
 
-On macOS with WebStorm 2026.3 and a JDK 21 or newer, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.1.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and the guide/preview menu check.
+On macOS with WebStorm 2026.3 and a JDK 21 or newer, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.2.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and the guide/preview menu check.
 
 ## Run and publish
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.2
+
+### Fixed
+
+- Restored compatibility with older IntelliJ Platform file editor APIs for project scheme restore and syntax preview.
+- Replaced experimental theme enumeration with the stable look-and-feel API.
+- Added IntelliJ IDEA Ultimate 2025.2.6.4 (IU-252.28539.149) to compatibility checks.
+
+
 ## 1.7.1
 
 ### Fixed

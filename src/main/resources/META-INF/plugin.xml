@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.craftzdog.solarizedosaka</id>
     <name>Solarized Osaka</name>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <vendor url="https://github.com/craftzdog/solarized-osaka.nvim">craftzdog inspired</vendor>
     <description><![CDATA[
         <h2>Solarized Osaka for JetBrains IDEs</h2>

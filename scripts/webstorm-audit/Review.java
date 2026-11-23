@@ -146,6 +146,14 @@ public class Review implements StartupActivity.DumbAware {
                 writer.println(csv(preset.getName(),ok && catalog.current().getName().equals(preset.getName()),manager.getGlobalScheme().getName(),valueRatio(values,0),valueRatio(values,2),valueRatio(values,4)));
             }
         }
+        if (catalog.all().size() != 48) throw new Error("Stable theme enumeration did not return all presets");
+        var prefs = project.getService(com.craftzdog.solarizedosaka.ProjectThemePreferences.class).getState();
+        prefs.setEditorSchemeName("Solarized Osaka Quiet UI Light");
+        project.getService(com.craftzdog.solarizedosaka.ProjectEditorSchemeService.class).restoreSavedScheme();
+        var edits = FileEditorManager.getInstance(project);
+        var editor = edits.getSelectedTextEditor();
+        if (!(editor instanceof com.intellij.openapi.editor.ex.EditorEx ex) || !ex.getColorsScheme().getName().contains("Quiet UI Light"))
+            throw new Error("Project editor scheme restoration did not apply the requested scheme");
         paletteButtons(project, dir);
         menus(project,dir);
     }

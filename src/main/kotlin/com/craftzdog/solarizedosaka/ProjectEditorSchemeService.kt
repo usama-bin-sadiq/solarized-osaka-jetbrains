@@ -44,7 +44,7 @@ class ProjectEditorSchemeService(private val project: Project) : Disposable {
         EditorFactory.getInstance().allEditors
             .filter { it.project == project }
             .forEach { (it as? EditorEx)?.setColorsScheme(scheme) }
-        val manager = FileEditorManager.getInstance(project)
+        val manager = PlatformFileEditors.get(project)
         manager.openFiles.forEach { applyToFile(manager, it, scheme) }
     }
 
