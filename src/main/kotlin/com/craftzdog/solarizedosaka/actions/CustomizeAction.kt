@@ -3,8 +3,10 @@ package com.craftzdog.solarizedosaka.actions
 import com.craftzdog.solarizedosaka.ThemeCatalog
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.intellij.ide.ui.LafManagerListener
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.ui.DialogWrapper
@@ -194,7 +196,7 @@ class CustomizeAction : AnAction(), DumbAware {
         }
         val presets = PersonalThemes.presets().associateBy { it["name"].asString }
         val chooser = JComboBox(presets.keys.sorted().toTypedArray())
-        ThemeCatalog.current()?.name?.takeIf { it in presets }?.let { chooser.selectedItem = it }
+        ThemeCatalog.activePresetName()?.let { chooser.selectedItem = it }
         val service = PersonalThemes.instance()
         val saved = JComboBox((listOf("New personal theme") + service.state.profiles.keys.sorted()).toTypedArray())
         val name = JTextField("My palette")
@@ -219,6 +221,19 @@ class CustomizeAction : AnAction(), DumbAware {
         val colors = linkedMapOf<String,Color>()
         var palette = PersonalPalette(presets.getValue(chooser.selectedItem as String))
         val live = JCheckBox("Preview in IDE")
+        val activation = JButton()
+        activation.addActionListener { ThemeCatalog.openAppearance(event.project) }
+        fun refreshAvailability() {
+            val isActive = ThemeCatalog.activePresetName() == palette.name
+            if (!isActive && live.isSelected) {
+                live.isSelected = false
+                service.endPreview()
+            }
+            live.isEnabled = isActive
+            activation.text = "Choose “${palette.name}” in Appearance…"
+            activation.isVisible = !isActive
+            openDialog?.isOKActionEnabled = isActive
+        }
         val quiet = JCheckBox("Quiet chrome")
         val accent = JSlider(0, 100, 50).apply {
             accessibleContext.accessibleName = "Accent strength"
@@ -240,6 +255,7 @@ class CustomizeAction : AnAction(), DumbAware {
         val contrastButton = JButton("Check contrast")
         val colorButtons = mutableMapOf<String, JButton>()
         fun draftChanged() {
+            refreshAvailability()
             val pairs = palette.contrastPairs(colors, accent.value)
             val weak = pairs.count { it.ratio < 4.5 }
             contrastSummary.text = if (weak == 0) "Checked text meets 4.5:1" else "$weak text pairs below 4.5:1"
@@ -327,7 +343,7 @@ class CustomizeAction : AnAction(), DumbAware {
         fun refreshSavedDraft() {
             val profile = service.state.profiles[saved.selectedItem]
             val selected = PersonalPalette(presets.getValue(chooser.selectedItem as String))
-            if (profile == null || (ThemeCatalog.find(profile.preset) != null && !service.sameFamily(profile.preset, selected.name))) {
+            if (profile == null || (profile.preset in presets && !service.sameFamily(profile.preset, selected.name))) {
                 refresh()
                 return
             }
@@ -339,9 +355,11 @@ class CustomizeAction : AnAction(), DumbAware {
             val profile = service.state.profiles[saved.selectedItem]
             name.text = if (profile != null) saved.selectedItem.toString() else "My palette"
             profile?.let {
-                if (ThemeCatalog.find(it.preset) != null) chooser.selectedItem = it.preset
+                val active = ThemeCatalog.activePresetName()
+                if (active != null && service.sameFamily(it.preset, active)) chooser.selectedItem = active
+                else if (it.preset in presets) chooser.selectedItem = it.preset
                 else {
-                    service.replacementPreset(it.preset)?.let { replacement -> chooser.selectedItem = replacement }
+                    active?.let { replacement -> chooser.selectedItem = replacement }
                     Messages.showInfoMessage(event.project, "The previous base preset is unavailable. Choose a replacement and apply the saved colors.", "Recover Saved Palette")
                 }
             }
@@ -416,7 +434,10 @@ class CustomizeAction : AnAction(), DumbAware {
                 PaletteFiles.write(target.toPath(), label, service.state.profiles.getValue(label))
             }
         }
-        panel.add(manage, BorderLayout.NORTH)
+        panel.add(JPanel(BorderLayout()).apply {
+            add(manage, BorderLayout.NORTH)
+            add(activation, BorderLayout.SOUTH)
+        }, BorderLayout.NORTH)
         refresh()
         if (service.state.active.isNotBlank()) saved.selectedItem = service.state.active
         val preview = object : JPanel() {
@@ -484,10 +505,14 @@ class CustomizeAction : AnAction(), DumbAware {
             override fun createCenterPanel(): JComponent = panel
 
             override fun createActions(): Array<Action> = arrayOf(cancelAction, object : AbstractAction("Use base preset") {
-                override fun actionPerformed(event: ActionEvent) {
+                override fun actionPerformed(action: ActionEvent) {
+                    if (ThemeCatalog.activePresetName() != palette.name) {
+                        ThemeCatalog.openAppearance(event.project)
+                        return
+                    }
                     update.stop()
                     service.endPreview()
-                    ThemeCatalog.apply(palette.name)
+                    service.useBasePreset()
                     close(OK_EXIT_CODE)
                 }
             }, okAction)
@@ -515,6 +540,9 @@ class CustomizeAction : AnAction(), DumbAware {
             }
         }
         openDialog = dialog
+        ApplicationManager.getApplication().messageBus.connect(dialog.disposable)
+            .subscribe(LafManagerListener.TOPIC, LafManagerListener { refreshAvailability() })
+        refreshAvailability()
         dialog.show()
     }
 }

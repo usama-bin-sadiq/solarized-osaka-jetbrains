@@ -62,7 +62,7 @@ intellijPlatform {
             <h2>Solarized Osaka for JetBrains IDEs</h2>
             <p>48 Classic and Islands UI themes across 12 palette families.</p>
             <p>Includes a theme gallery, language-aware editor colors, custom token mappings, VCS and console palettes,
-            font presets, preview samples, and optional system appearance sync.</p>
+            font presets, live personal palettes, and preview samples.</p>
         """.trimIndent()
         changeNotes = providers.fileContents(layout.projectDirectory.file("CHANGELOG.md")).asText.map { text ->
             buildString {

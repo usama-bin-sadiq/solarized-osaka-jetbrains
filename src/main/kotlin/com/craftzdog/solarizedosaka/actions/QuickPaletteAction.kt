@@ -19,11 +19,20 @@ class QuickPaletteAction : AnAction(), DumbAware {
 
     override fun actionPerformed(event: AnActionEvent) {
         val service = PersonalThemes.instance()
-        val choices = ThemeCatalog.all().associate { "preset:${it.name}" to it.name } +
+        val choices = PersonalThemes.presets().associate { "preset:${it["name"].asString}" to it["name"].asString } +
             service.state.profiles.keys.associate { "personal:$it" to "$it  (Personal)" }
         val model = DefaultListModel<Choice>()
         val list = JBList(model).apply { selectionMode = ListSelectionModel.SINGLE_SELECTION }
         val favorite = JButton("Add to favorites")
+        val instructions = JLabel()
+        fun presetNeeded(key: String): String? {
+            val name = key.substringAfter(':')
+            val active = ThemeCatalog.activePresetName()
+            if (key.startsWith("preset:")) return name.takeUnless { it == active }
+            val preset = service.state.profiles[name]?.preset ?: return null
+            if (active != null && service.sameFamily(preset, active)) return null
+            return preset.takeIf { PersonalThemes.preset(it) != null }
+        }
         fun populate(selected: String? = null) {
             val favorites = service.state.favorites
             val recent = service.state.recent
@@ -49,25 +58,46 @@ class QuickPaletteAction : AnAction(), DumbAware {
             populate(key)
         }
         populate(service.state.active.takeIf { it.isNotBlank() }?.let { "personal:$it" }
-            ?: ThemeCatalog.current()?.name?.let { "preset:$it" })
+            ?: ThemeCatalog.activePresetName()?.let { "preset:$it" })
         val panel = JPanel(BorderLayout(JBUI.scale(8), JBUI.scale(8))).apply {
             add(JBScrollPane(list).apply { preferredSize = JBUI.size(450, 330) }, BorderLayout.CENTER)
-            add(favorite, BorderLayout.SOUTH)
+            add(JPanel(BorderLayout()).apply {
+                add(instructions, BorderLayout.NORTH)
+                add(favorite, BorderLayout.WEST)
+            }, BorderLayout.SOUTH)
         }
         object : DialogWrapper(event.project) {
             init {
                 title = "Switch Solarized Osaka Palette"
-                setOKButtonText("Apply palette")
                 init()
+                refreshSelection()
+                list.addListSelectionListener { refreshSelection() }
             }
             override fun createCenterPanel(): JComponent = panel
             override fun getPreferredFocusedComponent(): JComponent = list
+
+            private fun refreshSelection() {
+                val needed = list.selectedValue?.key?.let(::presetNeeded)
+                setOKButtonText(if (needed == null) "Apply palette" else "Open Appearance…")
+                isOKActionEnabled = list.selectedValue != null
+                instructions.text = needed?.let { "Select “$it” in Appearance → Theme." }.orEmpty()
+            }
+
             override fun doOKAction() {
                 val key = list.selectedValue?.key ?: return
+                if (presetNeeded(key) != null) {
+                    super.doOKAction()
+                    ThemeCatalog.openAppearance(event.project)
+                    return
+                }
                 val name = key.substringAfter(':')
-                val applied = if (key.startsWith("personal:")) service.activateProfile(name) else ThemeCatalog.apply(name)
-                if (applied) super.doOKAction()
-                else Messages.showErrorDialog(event.project, "This palette’s preset is unavailable. Open Customize Solarized Osaka to select a replacement.", title)
+                if (key.startsWith("personal:")) {
+                    if (!service.activateProfile(name)) {
+                        Messages.showErrorDialog(event.project, "This palette’s preset is unavailable. Open Customize Solarized Osaka to choose a replacement.", title)
+                        return
+                    }
+                } else service.useBasePreset()
+                super.doOKAction()
             }
         }.show()
     }

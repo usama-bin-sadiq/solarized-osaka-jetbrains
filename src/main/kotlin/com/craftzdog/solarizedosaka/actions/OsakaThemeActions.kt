@@ -3,16 +3,18 @@ package com.craftzdog.solarizedosaka.actions
 import com.craftzdog.solarizedosaka.ProjectEditorSchemeService
 import com.craftzdog.solarizedosaka.ProjectThemePreferences
 import com.craftzdog.solarizedosaka.ThemeCatalog
-import com.intellij.ide.ui.LafManager
+import com.craftzdog.solarizedosaka.settings.ThemeGalleryConfigurable
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.craftzdog.solarizedosaka.PlatformFileEditors
+import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.options.ShowSettingsUtil
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
+import com.intellij.openapi.ui.Messages
 import com.intellij.util.ui.JBUI
 import java.awt.BorderLayout
 import javax.swing.JComboBox
@@ -21,17 +23,9 @@ import javax.swing.JLabel
 import javax.swing.JPanel
 import com.intellij.testFramework.LightVirtualFile
 
-class SwitchOsakaBrightnessAction : AnAction(), DumbAware {
-    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
-
-    override fun update(event: AnActionEvent) {
-        val current = ThemeCatalog.current()
-        event.presentation.isEnabledAndVisible = current?.name?.startsWith("Solarized Osaka") == true
-    }
-
+class OpenOsakaAppearanceAction : AnAction(), DumbAware {
     override fun actionPerformed(event: AnActionEvent) {
-        val current = ThemeCatalog.current() ?: return
-        ThemeCatalog.applyBrightness(ThemeCatalog.toggleBrightness(current.name, current.isDark))
+        ThemeCatalog.openAppearance(event.project)
     }
 }
 
@@ -39,7 +33,7 @@ class OpenThemeGalleryAction : AnAction(), DumbAware {
     override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
 
     override fun actionPerformed(event: AnActionEvent) {
-        ShowSettingsUtil.getInstance().showSettingsDialog(event.project, "com.craftzdog.solarizedosaka.themeGallery")
+        ShowSettingsUtil.getInstance().showSettingsDialog(event.project, ThemeGalleryConfigurable::class.java)
     }
 }
 
@@ -47,7 +41,7 @@ class SaveProjectThemeAction : AnAction(), DumbAware {
     override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
 
     override fun update(event: AnActionEvent) {
-        val isOsaka = LafManager.getInstance().currentUIThemeLookAndFeel?.name?.startsWith("Solarized Osaka") == true
+        val isOsaka = ThemeCatalog.current()?.id?.startsWith("com.craftzdog.solarizedosaka.") == true
         event.presentation.isEnabledAndVisible = event.project != null && isOsaka
     }
 
@@ -65,14 +59,24 @@ class ApplyProjectThemeAction : AnAction(), DumbAware {
     override fun update(event: AnActionEvent) {
         val project = event.project
         event.presentation.isEnabledAndVisible = project != null &&
-            project.getService(ProjectThemePreferences::class.java).state.themeName.isNotBlank()
+            project.getService(ProjectThemePreferences::class.java).state.editorSchemeName.isNotBlank()
     }
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
         val preferences = project.getService(ProjectThemePreferences::class.java).state
-        ThemeCatalog.apply(preferences.themeName) // UI themes are IDE-wide; the editor scheme is scoped to this project.
         project.getService(ProjectEditorSchemeService::class.java).restoreSavedScheme()
+        val savedPreset = ThemeCatalog.removedPresetReplacement(preferences.themeName)
+        if (savedPreset.isNotBlank() && savedPreset != ThemeCatalog.activePresetName() &&
+            Messages.showYesNoDialog(
+                project,
+                "The project editor scheme was restored. To use the saved UI preset, select “$savedPreset” in Appearance.",
+                "Saved Solarized Osaka Preset",
+                "Open Appearance",
+                "Done",
+                null
+            ) == Messages.YES
+        ) ThemeCatalog.openAppearance(project)
     }
 }
 
@@ -123,7 +127,7 @@ class OpenOsakaPreviewAction : AnAction(), DumbAware {
                 val existing = manager.openFiles.filterIsInstance<LightVirtualFile>().firstOrNull {
                     it.name == sample.name && it.content.toString() == sample.content
                 }
-                manager.openFile(existing ?: previewFile(sample), true)
+                OpenFileDescriptor(project, existing ?: previewFile(sample)).navigate(true)
                 super.doOKAction()
             }
         }.show()

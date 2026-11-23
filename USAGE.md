@@ -9,22 +9,22 @@
 
 ## Customize colors
 
-- Choose Tools → Solarized Osaka → Customize Solarized Osaka and select your base preset.
+- Activate a Solarized Osaka preset in Appearance, then choose Tools → Solarized Osaka → Customize Solarized Osaka.
 - Set Accent strength between Soft and Vivid. Edit the editor, directory, and menu selection colors independently. Check contrast suggests readable shades for common text pairs.
-- Enable Preview in IDE for live changes. Cancel restores the previous appearance. Apply personal theme saves immediately.
+- Enable Preview in IDE for live changes on the active preset. Cancel restores the previous colors. Apply personal theme saves and applies the palette immediately.
 - Quiet chrome reduces the prominence of idle toolbars and borders.
 
 ## Switch, undo, and share
 
-- Find Action → Switch Solarized Osaka Palette opens favorites and recent palettes.
-- Use Switch Solarized Osaka Dark/Light for the matching brightness. Personal palettes keep separate light and dark edits.
-- Undo Last Solarized Osaka Apply restores the previous appearance for this session.
+- Find Action → Switch Solarized Osaka Palette opens favorites and recent palettes. It applies compatible personal palettes and opens Appearance when you need to select a different preset.
+- Use Choose Solarized Osaka Preset to open Appearance. For automatic light and dark switching, enable Sync with OS and choose a matching pair. Personal palettes keep separate light and dark edits for the same family and UI style.
+- Undo Last Solarized Osaka Apply restores the previous colors on the active preset.
 - Rename, duplicate, import, or export palettes in the customization dialog. Exported palettes are JSON.
 
 ## Project preferences
 
 - Save Solarized Osaka Theme for Project remembers the current theme and editor scheme.
-- Apply Saved Theme and Project Editor Scheme switches UI appearance IDE-wide and restores the project's editor scheme for that project.
+- Restore Saved Project Editor Scheme restores the project's editor colors and offers to open Appearance if the saved UI preset differs.
 - Select font presets such as the Mono Compact or Mono Relaxed scheme in Settings → Editor → Color Scheme.
 
 ## Check file highlighting

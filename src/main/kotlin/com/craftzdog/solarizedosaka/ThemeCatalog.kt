@@ -1,7 +1,11 @@
 package com.craftzdog.solarizedosaka
 
+import com.craftzdog.solarizedosaka.actions.PersonalThemes
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
+import com.intellij.openapi.options.SearchableConfigurable
+import com.intellij.openapi.options.ShowSettingsUtil
+import com.intellij.openapi.project.Project
 
 object ThemeCatalog {
     private const val CLASSIC_PREFIX = "Solarized Osaka"
@@ -31,12 +35,15 @@ object ThemeCatalog {
 
     fun current(): UIThemeLookAndFeelInfo? = LafManager.getInstance().currentUIThemeLookAndFeel
 
-    @Suppress("DEPRECATION")
-    fun all(): List<UIThemeLookAndFeelInfo> =
-        LafManager.getInstance().installedLookAndFeels
-            .filterIsInstance<UIThemeLookAndFeelInfo>()
-            .filter { it.name.startsWith(CLASSIC_PREFIX) }
-            .sortedBy { it.name }
+    fun activePresetName(): String? = current()?.takeIf {
+        it.id.startsWith("com.craftzdog.solarizedosaka.") && PersonalThemes.preset(it.name) != null
+    }?.name
+
+    fun openAppearance(project: Project?) {
+        ShowSettingsUtil.getInstance().showSettingsDialog(
+            project, { it is SearchableConfigurable && it.id == "preferences.lookFeel" }, null
+        )
+    }
 
     fun removedPresetReplacement(name: String): String = when (name) {
         "Solarized Osaka Glass" -> "Solarized Osaka Quiet UI"
@@ -44,25 +51,6 @@ object ThemeCatalog {
         "Solarized Osaka Islands Glass" -> "Solarized Osaka Islands Quiet UI"
         "Solarized Osaka Islands Glass Light" -> "Solarized Osaka Islands Quiet UI Light"
         else -> name
-    }
-
-    fun find(name: String?): UIThemeLookAndFeelInfo? =
-        all().firstOrNull { it.name == name?.let(::removedPresetReplacement) }
-
-    fun apply(name: String): Boolean {
-        val theme = find(name) ?: return false
-        val personal = com.craftzdog.solarizedosaka.actions.PersonalThemes.instance()
-        personal.rememberApply()
-        personal.deactivate()
-        LafManager.getInstance().setCurrentUIThemeLookAndFeel(theme)
-        com.craftzdog.solarizedosaka.actions.PersonalThemes.instance().rememberChoice("preset:$name")
-        return true
-    }
-
-    fun applyBrightness(name: String): Boolean {
-        val personal = com.craftzdog.solarizedosaka.actions.PersonalThemes.instance()
-        if (personal.isPreviewing) return false
-        return personal.switchToBrightness(name) || apply(name)
     }
 
     fun familyOf(name: String?): String {
@@ -81,10 +69,5 @@ object ThemeCatalog {
         val familyPart = if (actualFamily == "Classic") "" else " $actualFamily"
         val modePart = if (isDark || actualFamily == "Warm Dark") "" else " Light"
         return "$prefix$familyPart$modePart"
-    }
-
-    fun toggleBrightness(currentName: String?, isDark: Boolean): String {
-        val target = themeName(familyOf(currentName), !isDark, isIslands(currentName))
-        return if (find(target) != null) target else themeName("Classic", !isDark, false)
     }
 }

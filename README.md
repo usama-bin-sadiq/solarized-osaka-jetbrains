@@ -15,7 +15,7 @@ Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/) when av
 
 ## Quick start
 
-1. Open **Tools → Solarized Osaka → Solarized Osaka Theme Gallery** to choose a family.
+1. Preview families in **Tools → Solarized Osaka → Solarized Osaka Theme Gallery**, then select your preset with **Choose Solarized Osaka Preset…** in the same submenu.
 2. Open **Customize Solarized Osaka** in the same submenu to change colors or accent strength.
 3. Open **Solarized Osaka Usage Guide** or **Solarized Osaka Changelog** in the **Help** menu or in **Tools → Solarized Osaka**.
 
@@ -23,19 +23,19 @@ Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/) when av
 
 ## Personal themes
 
-Open **Tools → Solarized Osaka → Customize Solarized Osaka**, choose a base and a name, and edit the colors in the live preview. **Apply personal theme** saves and applies the palette immediately. Reopen it under **Saved palettes**, use **Reset colors to preset** to reset a draft, or **Use base preset** to return to stock colors.
+Select a Solarized Osaka preset in **Settings → Appearance & Behavior → Appearance → Theme**. Open **Tools → Solarized Osaka → Customize Solarized Osaka**, name your palette, and edit the colors. **Apply personal theme** saves and applies the palette immediately on the active preset. Reopen it under **Saved palettes**, use **Reset colors to preset** to reset a draft, or **Use base preset** to return to stock colors.
 
 
 ### Live preview and palette controls
 
-- Enable **Preview in IDE** to see a draft in the actual IDE. Cancel or turn off the preview to restore your previous appearance.
+- Enable **Preview in IDE** to see a draft on the active preset. Use the sample preview to compare other presets, then select one in **Appearance** to edit it live. Cancel or turn off the live preview to restore your previous colors.
 - **Quiet chrome** softens inactive toolbars and tabs.
 - Use **Check contrast** to review readability. Reset individual colors to their preset, and save the palette with **Apply personal theme**.
 - Rename, duplicate or delete saved palettes, or share them as JSON with **Import** and **Export**. Edits to light and dark colors are saved separately when you switch brightness and apply edits to each mode.
 
 ### Palette shortcuts and comfort
 
-Use **Switch Solarized Osaka Palette** from Tools or Find Action to open favorites and recent palettes. **Undo Last Solarized Osaka Apply** restores the previous appearance for the current session. In the customizer, set **Accent strength** and edit the editor, tree and menu selection colors independently. Legacy shared selection colors still apply wherever a surface has no personal override.
+Use **Switch Solarized Osaka Palette** from Tools or Find Action to open favorites and recent palettes. It applies compatible personal palettes immediately and opens **Appearance** for other base presets. **Undo Last Solarized Osaka Apply** restores the previous colors on the current preset. In the customizer, set **Accent strength** and edit the editor, tree and menu selection colors independently. Legacy shared selection colors still apply wherever a surface has no personal override.
 
 ## Theme gallery
 
@@ -56,7 +56,7 @@ The plugin includes 12 palette families, each available in Classic Dark, Classic
 | Vivid | Brighter accents |
 | Muted | Softer accents |
 
-Open **Settings → Appearance → Solarized Osaka Theme Gallery** to browse color swatches, choose a palette and UI style, and see a code preview. The plugin offers the gallery once on first launch.
+Open the **Solarized Osaka Theme Gallery** in Settings to compare color swatches, UI styles and code previews. Use **Appearance → Theme** to apply the selected preset. The plugin offers the gallery once on first launch.
 
 ## Editor features
 
@@ -71,9 +71,9 @@ Open **Settings → Appearance → Solarized Osaka Theme Gallery** to browse col
 
 - Choose a UI theme in **Settings → Appearance & Behavior → Appearance → Theme**.
 - Choose font presets in **Settings → Editor → Color Scheme**. Each UI theme selects its matching Osaka editor scheme automatically.
-- Use **Tools → Solarized Osaka → Solarized Osaka Theme Gallery** or **Tools → Solarized Osaka → Switch Solarized Osaka Dark/Light**.
-- Optional **Follow the operating system's light/dark setting** checks macOS, Windows, or GNOME Linux every minute and preserves the current Osaka palette family.
-- **Tools → Solarized Osaka → Save Solarized Osaka Theme for Project** stores the current UI theme and editor scheme. **Tools → Solarized Osaka → Apply Saved Theme and Project Editor Scheme** restores the editor scheme only in that project's editors. JetBrains UI themes are IDE-wide, so applying the saved UI theme changes the whole IDE.
+- Use **Tools → Solarized Osaka → Choose Solarized Osaka Preset…** to open Appearance directly.
+- For automatic light and dark switching, enable **Sync with OS** in Appearance and select a light and a dark Osaka preset. A personal palette follows when both presets use the same family and UI style.
+- **Tools → Solarized Osaka → Save Solarized Osaka Theme for Project** stores the current UI preset and editor scheme. **Restore Saved Project Editor Scheme** reapplies the scheme to that project's editors and offers to open Appearance if the saved UI preset is different.
 - **Tools → Solarized Osaka → Open Solarized Osaka Preview** opens a picker for disposable sample files. Close them without saving.
 
 ## Build
@@ -86,7 +86,7 @@ Requires JDK 21. The repository includes a Gradle 8.13 wrapper:
 
 The plugin archive is written under `build/distributions/`. CI checks theme assets, contrast and plugin compatibility for the seven IDE targets in the verification workflow.
 
-On macOS with WebStorm 2026.3 and a JDK 21 or newer, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.2.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and the guide/preview menu check.
+On macOS with WebStorm 2026.3 and a JDK that can read its Java 25 classes, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.3.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and menu checks.
 
 ## Run and publish
 

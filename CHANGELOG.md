@@ -1,11 +1,20 @@
 # Changelog
 
+## 1.7.3
+
+### Fixed
+
+- Removed the deprecated theme-list API. Choose any bundled preset from the IDE’s Appearance settings or open the picker through Tools → Solarized Osaka → Choose Solarized Osaka Preset.
+- Personal palettes still preview and apply live on the active preset. A saved palette follows light and dark variations of the same family and UI style when they are selected in Appearance.
+- Replaced Osaka’s system appearance polling with the IDE’s Sync with OS setting. Choose the dark and light Osaka presets in Appearance to enable OS switching.
+- Project editor schemes still restore independently. The restore action now offers the Appearance picker if the saved UI preset differs from the active one.
+
 ## 1.7.2
 
 ### Fixed
 
 - Restored compatibility with older IntelliJ Platform file editor APIs for project scheme restore and syntax preview.
-- Replaced experimental theme enumeration with the stable look-and-feel API.
+- Replaced experimental theme enumeration with the older look-and-feel API.
 - Added IntelliJ IDEA Ultimate 2025.2.6.4 (IU-252.28539.149) to compatibility checks.
 
 

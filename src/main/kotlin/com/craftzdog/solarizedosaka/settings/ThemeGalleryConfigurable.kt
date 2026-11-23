@@ -1,7 +1,6 @@
 package com.craftzdog.solarizedosaka.settings
 
 import com.craftzdog.solarizedosaka.ThemeCatalog
-import com.craftzdog.solarizedosaka.ThemeAutomationService
 import com.intellij.openapi.options.SearchableConfigurable
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
@@ -25,8 +24,8 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
     private val familyButtons = linkedMapOf<String, PaletteButton>()
     private var mode: JComboBox<String>? = null
     private var uiStyle: JComboBox<String>? = null
-    private var followSystem: javax.swing.JCheckBox? = null
     private var preview: JPanel? = null
+    private var instructions: JLabel? = null
     private var previewLabels: List<JLabel> = emptyList()
 
     override fun getDisplayName(): String = "Solarized Osaka Theme Gallery"
@@ -57,7 +56,6 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         controls.add(JBLabel("UI style"))
         uiStyle = JComboBox(arrayOf("Classic", "Islands"))
         controls.add(uiStyle)
-        followSystem = javax.swing.JCheckBox("Follow the operating system's light/dark setting")
 
         val sample = JPanel(GridLayout(0, 1, 0, JBUI.scale(4)))
         sample.border = JBUI.Borders.empty(12)
@@ -79,7 +77,8 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         bottomTop.add(controls, BorderLayout.CENTER)
         bottomTop.add(previewContainer, BorderLayout.SOUTH)
         bottom.add(bottomTop, BorderLayout.CENTER)
-        bottom.add(followSystem, BorderLayout.SOUTH)
+        instructions = JBLabel()
+        bottom.add(instructions, BorderLayout.SOUTH)
 
         root.add(chooser, BorderLayout.CENTER)
         root.add(bottom, BorderLayout.SOUTH)
@@ -89,12 +88,7 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         return root
     }
 
-    override fun isModified(): Boolean {
-        val selected = selectedThemeName()
-        val current = ThemeCatalog.current()?.name
-        val follow = followSystem?.isSelected ?: false
-        return selected != current || follow != ThemeAutomationService.instance().state.followSystemAppearance
-    }
+    override fun isModified(): Boolean = false
 
     override fun reset() {
         val current = ThemeCatalog.current()
@@ -102,14 +96,10 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         familyButtons[family]?.isSelected = true
         mode?.selectedItem = if (current?.isDark == false) "Light" else "Dark"
         uiStyle?.selectedItem = if (ThemeCatalog.isIslands(current?.name)) "Islands" else "Classic"
-        followSystem?.isSelected = ThemeAutomationService.instance().state.followSystemAppearance
         updatePreview()
     }
 
-    override fun apply() {
-        ThemeCatalog.apply(selectedThemeName())
-        ThemeAutomationService.instance().setFollowSystem(followSystem?.isSelected == true)
-    }
+    override fun apply() = Unit
 
     private fun selectedThemeName(): String {
         val family = familyButtons.entries.firstOrNull { it.value.isSelected }?.key ?: "Classic"
@@ -134,6 +124,7 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         previewLabels.forEachIndexed { index, label ->
             label.foreground = when (index) { 0 -> accent; 2 -> Color(if (isDark) 0x93A1A1 else 0x687C80); else -> foreground }
         }
+        instructions?.text = "To use this preset, select “${selectedThemeName()}” in Appearance → Theme."
         preview?.repaint()
     }
 }

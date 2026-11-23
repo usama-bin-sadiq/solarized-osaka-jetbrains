@@ -1,9 +1,7 @@
 package com.craftzdog.solarizedosaka.actions
 
 import com.craftzdog.solarizedosaka.ThemeCatalog
-import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.LafManagerListener
-import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*
@@ -45,19 +43,34 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
     private var defaults: javax.swing.UIDefaults? = null
     private var initialized = false
     private var changing = false
-    private data class PreviewOrigin(val theme: UIThemeLookAndFeelInfo?, val scheme: EditorColorsScheme)
+    private var observedPreset: String? = null
+    private data class PreviewOrigin(val preset: String?, val scheme: EditorColorsScheme)
     private var previewOrigin: PreviewOrigin? = null
     private data class UndoEntry(val origin: PreviewOrigin, val label: String, val profile: Profile?)
     private var undo: UndoEntry? = null
     val canUndo: Boolean get() = undo != null
-    val isPreviewing: Boolean get() = previewOrigin != null
-
     init {
-        ApplicationManager.getApplication().messageBus.connect(this).subscribe(LafManagerListener.TOPIC,LafManagerListener {
-            if (!changing && initialized && settings.profiles[settings.active]?.preset != ThemeCatalog.current()?.name) {
-                previewOrigin = null
-                clearOverlay()
+        val application = ApplicationManager.getApplication()
+        application.messageBus.connect(this).subscribe(LafManagerListener.TOPIC, LafManagerListener {
+            val activePreset = ThemeCatalog.activePresetName()
+            if (changing || !initialized || observedPreset == activePreset) return@LafManagerListener
+            observedPreset = activePreset
+            previewOrigin = null
+            previewEditor = null
+            undo = null
+            clearOverlay()
+            if (activePreset != null) rememberChoice("preset:$activePreset")
+
+            val label = settings.active
+            val profile = settings.profiles[label] ?: return@LafManagerListener
+            if (activePreset == null || !sameFamily(profile.preset, activePreset)) {
                 settings.active = ""
+                return@LafManagerListener
+            }
+            application.invokeLater {
+                if (settings.active == label && settings.profiles[label] === profile &&
+                    ThemeCatalog.activePresetName() == activePreset && previewOrigin == null
+                ) restoreProfile(profile, label, activePreset)
             }
         })
     }
@@ -77,17 +90,26 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
 
     fun restore() {
         if (initialized) return
-        initialized=true
-        val label=settings.active
-        val profile=settings.profiles[label] ?: return
-        val previousPreset = profile.preset
+        initialized = true
+        val activePreset = ThemeCatalog.activePresetName()
+        observedPreset = activePreset
+        if (activePreset != null) rememberChoice("preset:$activePreset")
+        val label = settings.active
+        val profile = settings.profiles[label] ?: return
         migrateRemovedPreset(profile)
-        if (ThemeCatalog.current()?.name != profile.preset && previousPreset == profile.preset) {
+        if (activePreset == null || !sameFamily(profile.preset, activePreset)) {
             settings.active = ""
             return
         }
-        val palette = presets().firstOrNull { it["name"].asString == profile.preset }?.let(::PersonalPalette) ?: return
-        render(palette, colorsFor(profile, palette), personalName(label), quietChrome = profile.quietChrome, accent = profile.accentStrength)
+        restoreProfile(profile, label, activePreset)
+    }
+
+    private fun restoreProfile(profile: Profile, label: String, activePreset: String) {
+        val palette = preset(activePreset)?.let(::PersonalPalette) ?: return
+        rememberLegacy(profile)
+        render(palette, colorsFor(profile, palette), personalName(label),
+            quietChrome = profile.quietChrome, accent = profile.accentStrength)
+        profile.preset = activePreset
     }
 
     internal fun colorsFor(profile: Profile, palette: PersonalPalette): Map<String, Color> {
@@ -104,17 +126,6 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         return if (current == null && opposite != null && edits.isNotEmpty())
             palette.adaptInherited(colors)
         else colors
-    }
-
-    fun switchToBrightness(name: String): Boolean {
-        val label = settings.active
-        val profile = settings.profiles[label] ?: return false
-        if (!sameFamily(name, profile.preset)) return false
-        val palette = preset(name)?.let(::PersonalPalette) ?: return false
-        rememberLegacy(profile)
-        render(palette, colorsFor(profile, palette), personalName(label), quietChrome = profile.quietChrome, accent = profile.accentStrength)
-        profile.preset = name
-        return true
     }
 
     internal fun apply(label: String, palette: PersonalPalette, colors: Map<String, Color>, quiet: Boolean = false, accent: Int = 50) {
@@ -145,13 +156,12 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
 
     internal fun activateProfile(label: String): Boolean {
         val profile = settings.profiles[label] ?: return false
-        val palette = preset(profile.preset)?.let(::PersonalPalette) ?: return false
+        val activePreset = ThemeCatalog.activePresetName() ?: return false
+        if (!sameFamily(profile.preset, activePreset)) return false
         endPreview()
         rememberApply()
-        render(palette, colorsFor(profile, palette), personalName(label),
-            quietChrome = profile.quietChrome, accent = profile.accentStrength)
+        restoreProfile(profile, label, activePreset)
         settings.active = label
-        initialized = true
         rememberChoice("personal:$label")
         return true
     }
@@ -181,7 +191,7 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
     }
 
     internal fun deleteProfile(label: String) {
-        if (settings.active == label) deactivate()
+        if (settings.active == label) resetToBasePreset()
         settings.profiles.remove(label)
         settings.favorites.remove("personal:$label")
         settings.recent.remove("personal:$label")
@@ -216,13 +226,6 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         profile.colors.clear()
     }
 
-    internal fun replacementPreset(previous: String): String? {
-        val dark = !previous.endsWith(" Light")
-        val requested = ThemeCatalog.themeName(ThemeCatalog.familyOf(previous), dark, ThemeCatalog.isIslands(previous))
-        val classic = ThemeCatalog.themeName("Classic", dark, false)
-        return listOf(requested, classic).firstOrNull { ThemeCatalog.find(it) != null }
-    }
-
     fun resolveSchemeName(name: String): String {
         val bare = name.removePrefix("_@user_")
         val replacement = ThemeCatalog.removedPresetReplacement(bare)
@@ -243,8 +246,8 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
             } else manager.getScheme(name)
     }
 
-    fun rememberApply() {
-        val origin = previewOrigin ?: PreviewOrigin(ThemeCatalog.current(), EditorColorsManager.getInstance().globalScheme)
+    private fun rememberApply() {
+        val origin = previewOrigin ?: PreviewOrigin(ThemeCatalog.activePresetName(), EditorColorsManager.getInstance().globalScheme)
         val label = settings.active
         undo = UndoEntry(origin, label, settings.profiles[label]?.let(::copyProfile))
     }
@@ -253,6 +256,7 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         val entry = undo ?: return
         endPreview()
         undo = null
+        if (entry.origin.preset != ThemeCatalog.activePresetName()) return
         if (entry.profile != null && entry.label in settings.profiles) {
             val palette = preset(entry.profile.preset)?.let(::PersonalPalette)
             if (palette != null) {
@@ -268,12 +272,14 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
     }
 
     internal fun sameFamily(first: String, second: String) =
-        ThemeCatalog.familyOf(first) == ThemeCatalog.familyOf(second) &&
+        preset(first) != null && preset(second) != null &&
+            ThemeCatalog.familyOf(first) == ThemeCatalog.familyOf(second) &&
             ThemeCatalog.isIslands(first) == ThemeCatalog.isIslands(second)
 
     internal fun preview(palette: PersonalPalette, colors: Map<String, Color>, quiet: Boolean, accent: Int) {
+        requireActivePreset(palette)
         if (previewOrigin == null) {
-            previewOrigin = PreviewOrigin(ThemeCatalog.current(), EditorColorsManager.getInstance().globalScheme)
+            previewOrigin = PreviewOrigin(palette.name, EditorColorsManager.getInstance().globalScheme)
         }
         render(palette, colors, "Solarized Osaka preview", registerScheme = false, quietChrome = quiet, accent = accent)
     }
@@ -282,10 +288,11 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         val origin = previewOrigin ?: return
         previewOrigin = null
         previewEditor = null
+        if (origin.preset != ThemeCatalog.activePresetName()) return
         val label = settings.active
         val profile = settings.profiles[label]
         val base = profile?.let { preset(it.preset) }?.let(::PersonalPalette)
-        if (profile != null && base != null && origin.theme?.name == base.name) {
+        if (profile != null && base != null && origin.preset == base.name) {
             render(base, colorsFor(profile, base), personalName(label), quietChrome = profile.quietChrome, accent = profile.accentStrength)
             return
         }
@@ -296,8 +303,6 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         changing = true
         try {
             clearOverlay()
-            val manager = LafManager.getInstance()
-            origin.theme?.takeIf { it != manager.currentUIThemeLookAndFeel }?.let(manager::setCurrentUIThemeLookAndFeel)
             EditorColorsManager.getInstance().setGlobalScheme(origin.scheme)
             repaint()
         } finally {
@@ -313,24 +318,18 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         quietChrome: Boolean = false,
         accent: Int = 50,
     ) {
-        val preset=palette.source["name"].asString
-        val laf=ThemeCatalog.all().firstOrNull { it.name==preset } ?: error("This preset is unavailable in the current IDE.")
+        requireActivePreset(palette)
+        val preset = palette.name
         val manager=EditorColorsManager.getInstance()
         val editorRoles = setOf("Editor", "Code text", "JSON key", "JSON string", "Comment",
             "Selection", "Selected text", "Editor selection", "Editor selected text")
         val draft = EditorDraft(preset, colors.filterKeys { it in editorRoles }, accent)
-        val samePreset = LafManager.getInstance().currentUIThemeLookAndFeel?.name == preset
-        val copy = if (registerScheme || !samePreset || previewEditor != draft)
+        val copy = if (registerScheme || previewEditor != draft)
             buildScheme(manager, palette, colors, accent, schemeName)
         else null
         previewEditor = if (registerScheme) null else draft
         changing=true
         try {
-            val mgr = LafManager.getInstance()
-            if (!samePreset) {
-                clearOverlay()
-                mgr.setCurrentUIThemeLookAndFeel(laf)
-            }
             val changed = updateOverlay(palette.uiOverrides(colors, quietChrome, accent))
             if (copy != null) {
                 if (registerScheme) manager.addColorScheme(copy)
@@ -338,6 +337,12 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
             }
             if (changed) repaint()
         } finally { changing=false }
+    }
+
+    private fun requireActivePreset(palette: PersonalPalette) {
+        check(ThemeCatalog.activePresetName() == palette.name) {
+            "Select “${palette.name}” in Appearance before applying these colors."
+        }
     }
 
     private fun buildScheme(
@@ -397,14 +402,21 @@ class PersonalThemes : PersistentStateComponent<PersonalThemes.Settings>, Dispos
         return changed
     }
 
-    fun deactivate() {
+    internal fun useBasePreset() {
         endPreview()
-        val profile=settings.profiles[settings.active] ?: return
-        settings.active=""
+        rememberApply()
+        resetToBasePreset()
+    }
+
+    private fun resetToBasePreset() {
+        val activePreset = ThemeCatalog.activePresetName() ?: return
+        val base = preset(activePreset)?.let(::PersonalPalette) ?: return
+        endPreview()
+        settings.active = ""
         clearOverlay()
-        val base=presets().firstOrNull { it["name"].asString==profile.preset }?.let(::PersonalPalette)
-        val manager=EditorColorsManager.getInstance()
-        base?.let { manager.getScheme(it.schemeName) }?.let(manager::setGlobalScheme)
+        val manager = EditorColorsManager.getInstance()
+        manager.getScheme(base.schemeName)?.let(manager::setGlobalScheme)
+        rememberChoice("preset:$activePreset")
         repaint()
     }
 

@@ -10,6 +10,8 @@ import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.testFramework.LightVirtualFile;
 import com.craftzdog.solarizedosaka.ThemeCatalog;
 import com.craftzdog.solarizedosaka.actions.*;
+import com.intellij.ide.ui.LafManager;
+import com.intellij.ide.ui.laf.UIThemeLookAndFeelInfo;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.TextEditor;
@@ -19,6 +21,7 @@ import org.jetbrains.plugins.textmate.configuration.TextMateUserBundlesSettings;
 import java.awt.Color;
 import java.nio.file.*;
 import java.util.*;
+import java.util.function.BooleanSupplier;
 import java.io.*;
 import java.util.regex.*;
 import javax.swing.Timer;
@@ -26,6 +29,8 @@ import javax.swing.Timer;
 public class Review implements StartupActivity.DumbAware {
     record Sample(String filename, String pattern, String source, String fixture, String content) {}
     record Span(int count, int different, int palette, int low, String firstLow, String engine) {}
+    interface AuditStep { void run() throws Exception; }
+    record PendingPaletteCheck(BooleanSupplier lightReady, AuditStep verifyLight, BooleanSupplier unrelatedReady) {}
     static String q(Object value) {return '"'+String.valueOf(value).replace("\"", "\"\"").replace("\n"," ")+'"';}
     static String csv(Object...values) {return java.util.Arrays.stream(values).map(Review::q).collect(java.util.stream.Collectors.joining(","));}
     static double lin(int x) {double n=x/255.0;return n<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4);}
@@ -93,12 +98,45 @@ public class Review implements StartupActivity.DumbAware {
         }
         var timer=new Timer(7500,null);timer.setRepeats(false);
         timer.addActionListener(event->ApplicationManager.getApplication().invokeLater(()->{
-            try { run(project,dir);Files.writeString(dir.resolve("passed"),"Audit completed"); }
-            catch(Throwable e){try(var error=new PrintWriter(Files.newBufferedWriter(dir.resolve("failure")))){e.printStackTrace(error);}catch(Exception ignored){}}
-            ApplicationManager.getApplication().invokeLater(()->ApplicationManagerEx.getApplicationEx().exit(true,true));
+            try {
+                var paletteCheck = run(project, dir);
+                afterThemeChange(dir, paletteCheck.lightReady(), () -> {
+                    paletteCheck.verifyLight().run();
+                    afterThemeChange(dir, paletteCheck.unrelatedReady(), () -> {
+                        if (!paletteCheck.unrelatedReady().getAsBoolean())
+                            throw new Error("Personal overlay survived a switch to an unrelated theme");
+                        Files.writeString(dir.resolve("personal-palette.txt"), "Preview, cancel, apply, paired preset change, reset, undo, and unrelated preset change passed.\n");
+                        menus(project, dir);
+                        Files.writeString(dir.resolve("passed"), "Audit completed");
+                        finish(dir, null);
+                    });
+                });
+            } catch (Throwable error) { finish(dir, error); }
         }));timer.start();
     }
-    private void run(Project project, Path dir) throws Exception {
+
+    private static void afterThemeChange(Path dir, BooleanSupplier ready, AuditStep step) {
+        long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(5);
+        var check = new Timer(100, null);
+        check.addActionListener(ignored -> {
+            if (!ready.getAsBoolean() && System.nanoTime() < deadline) return;
+            check.stop();
+            try { step.run(); }
+            catch (Throwable error) { finish(dir, error); }
+        });
+        check.start();
+    }
+
+    private static void finish(Path dir, Throwable error) {
+        if (error != null) {
+            try (var output = new PrintWriter(Files.newBufferedWriter(dir.resolve("failure")))) {
+                error.printStackTrace(output);
+            } catch (IOException ignored) {}
+        }
+        ApplicationManager.getApplication().invokeLater(() -> ApplicationManagerEx.getApplicationEx().exit(true, true));
+    }
+
+    private PendingPaletteCheck run(Project project, Path dir) throws Exception {
         var fixtures=encoded(dir.resolve("fixtures.tsv"));
         var generic=encoded(dir.resolve("default.tsv")).get("generic");
         var typeRegistry=FileTypeManager.getInstance();
@@ -137,16 +175,25 @@ public class Review implements StartupActivity.DumbAware {
             }
         }
         var catalog=ThemeCatalog.INSTANCE;
+        var presets = new TreeMap<String, UIThemeLookAndFeelInfo>();
+        // Inspect the IDE catalog in this audit plugin only. The distributed plugin never enumerates it.
+        var installed = LafManager.getInstance().getInstalledThemes().iterator();
+        installed.forEachRemaining(theme -> {
+            if (theme.getId().startsWith("com.craftzdog.solarizedosaka.")) presets.put(theme.getName(), theme);
+        });
+        if (presets.size() != 48 || presets.keySet().stream().anyMatch(name -> name.contains("Glass")))
+            throw new Error("Unexpected bundled theme catalog: " + presets.keySet());
         try(var writer=new PrintWriter(Files.newBufferedWriter(dir.resolve("themes.csv")))){
             writer.println(csv("Theme","Applied","Editor scheme","Tree contrast","Hover contrast","Menu contrast"));
-            for(var preset:catalog.all()){
-                var ok=catalog.apply(preset.getName());
+            for(var preset : presets.values()){
+                selectNativePreset(preset);
+                if (!preset.getName().equals(catalog.activePresetName()))
+                    throw new Error("The plugin missed the active preset " + preset.getName());
                 String[] keys={"Tree.selectionForeground","Tree.selectionBackground","Tree.foreground","Tree.hoverBackground","MenuItem.foreground","MenuItem.background"};
                 var values=Arrays.stream(keys).map(javax.swing.UIManager::getColor).toList();
-                writer.println(csv(preset.getName(),ok && catalog.current().getName().equals(preset.getName()),manager.getGlobalScheme().getName(),valueRatio(values,0),valueRatio(values,2),valueRatio(values,4)));
+                writer.println(csv(preset.getName(),true,manager.getGlobalScheme().getName(),valueRatio(values,0),valueRatio(values,2),valueRatio(values,4)));
             }
         }
-        if (catalog.all().size() != 48) throw new Error("Stable theme enumeration did not return all presets");
         var prefs = project.getService(com.craftzdog.solarizedosaka.ProjectThemePreferences.class).getState();
         prefs.setEditorSchemeName("Solarized Osaka Quiet UI Light");
         project.getService(com.craftzdog.solarizedosaka.ProjectEditorSchemeService.class).restoreSavedScheme();
@@ -154,8 +201,62 @@ public class Review implements StartupActivity.DumbAware {
         var editor = edits.getSelectedTextEditor();
         if (!(editor instanceof com.intellij.openapi.editor.ex.EditorEx ex) || !ex.getColorsScheme().getName().contains("Quiet UI Light"))
             throw new Error("Project editor scheme restoration did not apply the requested scheme");
-        paletteButtons(project, dir);
-        menus(project,dir);
+        paletteButtons(dir, presets);
+        return livePalette(dir, presets);
+    }
+
+    private static void selectNativePreset(UIThemeLookAndFeelInfo preset) {
+        LafManager.getInstance().setCurrentUIThemeLookAndFeel(preset);
+    }
+
+    private PendingPaletteCheck livePalette(Path dir, Map<String, UIThemeLookAndFeelInfo> presets) {
+        var service = PersonalThemes.Companion.instance();
+        var manager = EditorColorsManager.getInstance();
+        var dark = "Solarized Osaka";
+        var light = "Solarized Osaka Light";
+        var label = "Audit paired palette";
+        var key = TextAttributesKey.find("JSON.PROPERTY_KEY");
+        var darkKey = new Color(0xB6A4E0);
+        var lightKey = new Color(0x584383);
+        selectNativePreset(presets.get(dark));
+        var base = manager.getGlobalScheme();
+        var palette = new PersonalPalette(PersonalThemes.Companion.preset$solarized_osaka_intellij(dark));
+        var colors = new HashMap<>(palette.getDefaults());
+        colors.put("JSON key", darkKey);
+        service.preview$solarized_osaka_intellij(palette, colors, false, 50);
+        if (!darkKey.equals(manager.getGlobalScheme().getAttributes(key).getForegroundColor()))
+            throw new Error("Personal preview did not apply the draft color");
+        service.endPreview();
+        if (manager.getGlobalScheme() != base) throw new Error("Preview did not restore the base scheme");
+        service.apply$solarized_osaka_intellij(label, palette, colors, false, 50);
+        var profile = service.getState().getProfiles().get(label);
+        var lightOverrides = new PersonalThemes.ColorOverrides();
+        lightOverrides.getValues().put("JSON key", hex(lightKey));
+        profile.setLight(lightOverrides);
+        var inactive = new PersonalPalette(PersonalThemes.Companion.preset$solarized_osaka_intellij(light));
+        try {
+            service.preview$solarized_osaka_intellij(inactive, inactive.getDefaults(), false, 50);
+            throw new Error("Preview accepted a preset that is not active");
+        } catch (IllegalStateException expected) {
+            if (!expected.getMessage().contains(light)) throw expected;
+        }
+        selectNativePreset(presets.get(light));
+        BooleanSupplier ready = () -> light.equals(profile.getPreset()) &&
+            lightKey.equals(manager.getGlobalScheme().getAttributes(key).getForegroundColor());
+        return new PendingPaletteCheck(ready, () -> {
+            if (!ready.getAsBoolean())
+                throw new Error("Personal palette did not follow the matching light preset. Preset=" + profile.getPreset() +
+                    ", scheme=" + manager.getGlobalScheme().getName() + ", JSON key=" +
+                    manager.getGlobalScheme().getAttributes(key).getForegroundColor());
+            service.useBasePreset$solarized_osaka_intellij();
+            if (lightKey.equals(manager.getGlobalScheme().getAttributes(key).getForegroundColor()))
+                throw new Error("Use base preset did not clear the personal palette");
+            service.undoLastApply();
+            if (!lightKey.equals(manager.getGlobalScheme().getAttributes(key).getForegroundColor()))
+                throw new Error("Undo did not recover the personal palette");
+            selectNativePreset(presets.get("Solarized Osaka OLED"));
+        }, () -> "Solarized Osaka OLED".equals(ThemeCatalog.INSTANCE.activePresetName()) &&
+            service.getState().getActive().isEmpty() && !service.getCanUndo());
     }
     private void semantic(Project project, Path dir, Map<String, EditorColorsScheme> schemes) throws Exception {
         var editors=FileEditorManager.getInstance(project);
@@ -179,12 +280,12 @@ public class Review implements StartupActivity.DumbAware {
         }
     }
 
-    private void paletteButtons(Project project, Path dir) throws Exception {
+    private void paletteButtons(Path dir, Map<String, UIThemeLookAndFeelInfo> presets) throws Exception {
         try(var writer = new PrintWriter(Files.newBufferedWriter(dir.resolve("palette-buttons.csv")))){
             writer.println(csv("Theme","Palette buttons","Buttons with opaque white text","Filled button contrast"));
             for(String theme : List.of("Solarized Osaka", "Solarized Osaka Light",
                     "Solarized Osaka Islands Quiet UI", "Solarized Osaka Islands Quiet UI Light")){
-                ThemeCatalog.INSTANCE.apply(theme);
+                selectNativePreset(presets.get(theme));
                 var root = new com.craftzdog.solarizedosaka.settings.ThemeGalleryConfigurable().createComponent();
                 var buttons = new ArrayList<javax.swing.JToggleButton>();
                 collectPaletteButtons(root,buttons);
@@ -205,8 +306,6 @@ public class Review implements StartupActivity.DumbAware {
                     throw new Error("Palette label regression for "+theme);
             }
         }
-        if(ThemeCatalog.INSTANCE.all().stream().anyMatch(preset->preset.getName().contains("Glass")))
-            throw new Error("Removed palette is still offered");
         var path=dir.resolve("import-old-glass.json");
         Files.writeString(path,"{\"format\":1,\"name\":\"Audit\",\"palette\":{\"preset\":\"Solarized Osaka Islands Glass Light\",\"colors\":{},\"frost\":75,\"light\":{\"values\":{\"JSON key\":\"#255c67\"}}}}");
         var migrated=PaletteFiles.INSTANCE.read(path).getPalette();
@@ -267,7 +366,47 @@ public class Review implements StartupActivity.DumbAware {
                 }
                 output.println(id+" opened and confirmed");
             }
+            var appearance = actions.getAction(base + "SwitchBrightness");
+            var existingWindows = List.of(java.awt.Window.getWindows());
+            var themeControl = new java.util.concurrent.atomic.AtomicBoolean();
+            var loop = java.awt.Toolkit.getDefaultToolkit().getSystemEventQueue().createSecondaryLoop();
+            var timeout = new Timer(10000, event -> {
+                for (var window : java.awt.Window.getWindows())
+                    if (window.isShowing() && !existingWindows.contains(window))
+                        window.dispatchEvent(new java.awt.event.WindowEvent(window, java.awt.event.WindowEvent.WINDOW_CLOSING));
+                loop.exit();
+            });
+            timeout.setRepeats(false);
+            var check = new Timer(100, event -> {
+                for (var window : java.awt.Window.getWindows()) {
+                    if (!window.isShowing() || !hasThemePicker(window)) continue;
+                    themeControl.set(true);
+                    capture(window, dir.resolve("appearance-picker.png"));
+                    window.dispatchEvent(new java.awt.event.WindowEvent(window, java.awt.event.WindowEvent.WINDOW_CLOSING));
+                    loop.exit();
+                    return;
+                }
+            });
+            var context = (DataContext)(key -> CommonDataKeys.PROJECT.getName().equals(key) ? project : null);
+            timeout.start();
+            check.start();
+            appearance.actionPerformed(AnActionEvent.createFromAnAction(appearance, null, "Audit", context));
+            if (!themeControl.get() && timeout.isRunning()) loop.enter();
+            check.stop();
+            timeout.stop();
+            if (!themeControl.get()) throw new Error("The Choose Preset action did not open the native Appearance theme picker");
+            output.println("Choose Preset opened the native Appearance theme picker");
         }
+    }
+
+    private static boolean hasThemePicker(java.awt.Component component) {
+        if (component.isShowing() && component instanceof javax.swing.JComboBox<?> combo) {
+            for (int i = 0; i < combo.getItemCount(); i++)
+                if (String.valueOf(combo.getItemAt(i)).contains("Solarized Osaka")) return true;
+        }
+        if (component instanceof java.awt.Container node)
+            for (var child : node.getComponents()) if (hasThemePicker(child)) return true;
+        return false;
     }
     static void capture(java.awt.Window window,Path file){
         try{

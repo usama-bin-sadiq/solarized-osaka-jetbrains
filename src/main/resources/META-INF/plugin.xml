@@ -2,12 +2,12 @@
 <idea-plugin>
     <id>com.craftzdog.solarizedosaka</id>
     <name>Solarized Osaka</name>
-    <version>1.7.2</version>
+    <version>1.7.3</version>
     <vendor url="https://github.com/craftzdog/solarized-osaka.nvim">craftzdog inspired</vendor>
     <description><![CDATA[
         <h2>Solarized Osaka for JetBrains IDEs</h2>
         <p>48 Classic and Islands UI themes across 12 Solarized Osaka palette families.</p>
-        <p>Includes a theme gallery, language-aware editor colors, custom language token mappings, VCS and console palettes, font presets, preview samples, and optional system appearance sync.</p>
+        <p>Includes a theme gallery, language-aware editor colors, live personal palettes, custom language token mappings, VCS and console palettes, font presets, and preview samples.</p>
         <p>Compatible with IntelliJ Platform build 243 and newer. Islands variants require Islands UI support.</p>
         <p>Inspired by <a href="https://github.com/craftzdog/solarized-osaka.nvim">solarized-osaka.nvim</a> by craftzdog.</p>
     ]]></description>
@@ -118,7 +118,7 @@
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
         </action>
         <action id="com.craftzdog.solarizedosaka.UndoPaletteApply" class="com.craftzdog.solarizedosaka.actions.UndoPaletteApplyAction"
-                text="Undo Last Solarized Osaka Apply" description="Restore the previous theme and editor colors">
+                text="Undo Last Solarized Osaka Apply" description="Restore the previous personal colors on the active preset">
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
         </action>
         <action id="com.craftzdog.solarizedosaka.QuickPalette" class="com.craftzdog.solarizedosaka.actions.QuickPaletteAction"
@@ -134,13 +134,13 @@
                 description="Browse Solarized Osaka palette families and previews">
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
         </action>
-        <action id="com.craftzdog.solarizedosaka.SwitchBrightness" class="com.craftzdog.solarizedosaka.actions.SwitchOsakaBrightnessAction" text="Switch Solarized Osaka Dark/Light" description="Switch to the matching Solarized Osaka brightness variant">
+        <action id="com.craftzdog.solarizedosaka.SwitchBrightness" class="com.craftzdog.solarizedosaka.actions.OpenOsakaAppearanceAction" text="Choose Solarized Osaka Preset…" description="Open the IDE Appearance theme picker">
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
         </action>
         <action id="com.craftzdog.solarizedosaka.SaveProjectTheme" class="com.craftzdog.solarizedosaka.actions.SaveProjectThemeAction" text="Save Solarized Osaka Theme for Project" description="Save the current UI theme and editor scheme for this project">
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
         </action>
-        <action id="com.craftzdog.solarizedosaka.ApplyProjectTheme" class="com.craftzdog.solarizedosaka.actions.ApplyProjectThemeAction" text="Apply Saved Theme and Project Editor Scheme" description="Apply the saved UI theme IDE-wide and editor scheme to this project's editors">
+        <action id="com.craftzdog.solarizedosaka.ApplyProjectTheme" class="com.craftzdog.solarizedosaka.actions.ApplyProjectThemeAction" text="Restore Saved Project Editor Scheme" description="Restore the saved editor scheme and show the saved UI preset">
             <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
         </action>
         <action id="com.craftzdog.solarizedosaka.OpenPreview" class="com.craftzdog.solarizedosaka.actions.OpenOsakaPreviewAction" text="Open Solarized Osaka Preview" description="Open sample files for previewing Solarized Osaka colors">

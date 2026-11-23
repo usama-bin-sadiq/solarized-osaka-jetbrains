@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reject the bytecode references that broke older IntelliJ Platform builds."""
+"""Reject packaged references to the incompatible file editor and unstable theme APIs."""
 from io import BytesIO
 from pathlib import Path
 import sys
@@ -24,6 +24,12 @@ for archive in map(Path, sys.argv[1:]):
                         raise SystemExit(f'{archive}: {path} references the newer FileEditorManager companion')
                     if b'getInstalledThemes' in data:
                         raise SystemExit(f'{archive}: {path} references experimental theme enumeration')
+                    if b'getInstalledLookAndFeels' in data:
+                        raise SystemExit(f'{archive}: {path} references deprecated theme enumeration')
+                    if b'com/intellij/ide/ui/LafManager' in data and any(
+                        method in data for method in (b'findLaf', b'getLafComboBoxModel')
+                    ):
+                        raise SystemExit(f'{archive}: {path} references internal theme lookup')
     if class_count == 0:
         raise SystemExit(f'{archive}: no Solarized Osaka bytecode was found')
     print(f'{archive}: checked {class_count} classes; reported incompatible references absent')
