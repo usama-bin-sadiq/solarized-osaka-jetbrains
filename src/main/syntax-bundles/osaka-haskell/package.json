@@ -1,0 +1,29 @@
+{
+  "name": "osaka-haskell",
+  "displayName": "Haskell (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-haskell",
+        "aliases": [
+          "Haskell (Osaka)"
+        ],
+        "extensions": [
+          ".hs",
+          ".lhs"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-haskell",
+        "scopeName": "source.osaka-haskell",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

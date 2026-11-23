@@ -1,0 +1,28 @@
+{
+  "name": "osaka-luau",
+  "displayName": "Luau (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-luau",
+        "aliases": [
+          "Luau (Osaka)"
+        ],
+        "extensions": [
+          ".luau"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-luau",
+        "scopeName": "source.osaka-luau",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

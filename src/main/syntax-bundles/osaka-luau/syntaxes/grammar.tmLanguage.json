@@ -1,0 +1,42 @@
+{
+  "name": "Luau (Solarized Osaka starter)",
+  "scopeName": "source.osaka-luau",
+  "patterns": [
+    {
+      "name": "comment.block.luau",
+      "begin": "\\-\\-\\[\\[",
+      "end": "\\]\\]"
+    },
+    {
+      "name": "comment.line.luau",
+      "match": "\\-\\-.*$"
+    },
+    {
+      "name": "string.quoted.double.luau",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.luau"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.luau",
+      "match": "\\b(?:and|break|continue|do|else|elseif|end|export|for|function|if|in|local|not|or|repeat|return|then|type|until|while)\\b"
+    },
+    {
+      "name": "constant.language.luau",
+      "match": "\\b(?:true|false|nil)\\b"
+    },
+    {
+      "name": "storage.type.luau",
+      "match": "\\b(?:number|string|boolean|thread|buffer|unknown|never|any)\\b"
+    },
+    {
+      "name": "constant.numeric.luau",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

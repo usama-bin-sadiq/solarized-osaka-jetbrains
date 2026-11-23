@@ -1,0 +1,29 @@
+{
+  "name": "osaka-elixir",
+  "displayName": "Elixir (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-elixir",
+        "aliases": [
+          "Elixir (Osaka)"
+        ],
+        "extensions": [
+          ".ex",
+          ".exs"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-elixir",
+        "scopeName": "source.osaka-elixir",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

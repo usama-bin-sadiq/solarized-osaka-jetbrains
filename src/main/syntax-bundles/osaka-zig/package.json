@@ -1,0 +1,28 @@
+{
+  "name": "osaka-zig",
+  "displayName": "Zig (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-zig",
+        "aliases": [
+          "Zig (Osaka)"
+        ],
+        "extensions": [
+          ".zig"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-zig",
+        "scopeName": "source.osaka-zig",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "osaka-ada",
+  "displayName": "Ada (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-ada",
+        "aliases": [
+          "Ada (Osaka)"
+        ],
+        "extensions": [
+          ".adb",
+          ".ads"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-ada",
+        "scopeName": "source.osaka-ada",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

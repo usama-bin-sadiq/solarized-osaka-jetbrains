@@ -1,3 +1,5 @@
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.0.21"
@@ -28,6 +30,23 @@ kotlin {
 }
 
 intellijPlatform {
+    publishing {
+        token = providers.gradleProperty("intellijPlatformPublishingToken")
+    }
+
+    pluginVerification {
+        ides {
+            val target = providers.gradleProperty("verifyIde").orNull
+            if (target != null) {
+                val type = IntelliJPlatformType.valueOf(target)
+                val release = providers.gradleProperty("verifyIdeVersion").get()
+                ide(type, release)
+            } else {
+                recommended()
+            }
+        }
+    }
+
     pluginConfiguration {
         id = "com.craftzdog.solarizedosaka"
         name = "Solarized Osaka"
@@ -40,28 +59,48 @@ intellijPlatform {
             url = "https://github.com/craftzdog/solarized-osaka.nvim"
         }
         description = """
-            <h2>Solarized Osaka</h2>
-            <p>A clean, dark (and light) Solarized-inspired theme for all JetBrains IDEs,
-            ported from the popular Neovim theme by craftzdog.</p>
-            <p>Features slightly brightened base colors for modern displays and rich accent palette.</p>
-            <ul>
-              <li>Solarized Osaka (Dark)</li>
-              <li>Solarized Osaka Light</li>
-            </ul>
-            <p>Based on <a href="https://github.com/craftzdog/solarized-osaka.nvim">solarized-osaka.nvim</a>.</p>
+            <h2>Solarized Osaka for JetBrains IDEs</h2>
+            <p>48 Classic and Islands UI themes across 12 palette families.</p>
+            <p>Includes a theme gallery, language-aware editor colors, custom token mappings, VCS and console palettes,
+            font presets, preview samples, and optional system appearance sync.</p>
         """.trimIndent()
-        changeNotes = """
-            <h3>1.0.0</h3>
-            <ul>
-              <li>Initial release – full UI + editor scheme for Dark and Light</li>
-              <li>Accurate palette from solarized-osaka.nvim</li>
-            </ul>
-        """.trimIndent()
+        changeNotes = providers.fileContents(layout.projectDirectory.file("CHANGELOG.md")).asText.map { text ->
+            buildString {
+                var list = false
+                for (line in text.lineSequence()) {
+                    val escaped = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                    if (line.startsWith("## ")) {
+                        if (list) append("</ul>")
+                        append("<h3>${escaped.removePrefix("## ")}</h3>")
+                        list = false
+                    } else if (line.startsWith("- ")) {
+                        if (!list) append("<ul>")
+                        append("<li>${escaped.removePrefix("- ")}</li>")
+                        list = true
+                    }
+                }
+                if (list) append("</ul>")
+            }
+        }.get()
     }
 }
 
+val starterSyntaxBundles by tasks.registering(Zip::class) {
+    from("src/main/syntax-bundles")
+    archiveFileName.set("solarized-osaka-syntax-bundles.zip")
+    destinationDirectory.set(layout.buildDirectory.dir("syntax-bundles"))
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
+}
+
 tasks {
+    processResources {
+        from(listOf("USAGE.md", "CHANGELOG.md")) { into("osaka-help") }
+        from(starterSyntaxBundles) { into("osaka-help") }
+    }
+
+
     wrapper {
-        gradleVersion = "8.11.1"
+        gradleVersion = "8.13"
     }
 }

@@ -1,62 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <idea-plugin>
     <id>com.craftzdog.solarizedosaka</id>
     <name>Solarized Osaka</name>
-    <version>1.1.1</version>
+    <version>1.7.1</version>
     <vendor url="https://github.com/craftzdog/solarized-osaka.nvim">craftzdog inspired</vendor>
-
     <description><![CDATA[
-        <h2>Solarized Osaka</h2>
-        <p>A clean, dark (and light) Solarized-inspired theme for all JetBrains IDEs.</p>
-        <p><b>Inspired by</b> the Neovim theme
-        <a href="https://github.com/craftzdog/solarized-osaka.nvim">solarized-osaka.nvim</a>
-        by craftzdog.</p>
-        <p>Features slightly brightened base colors for modern displays and a rich accent palette.</p>
-        <h3>Themes included</h3>
-        <ul>
-          <li><b>Solarized Osaka</b> – Classic Dark</li>
-          <li><b>Solarized Osaka Light</b> – Classic Light</li>
-          <li><b>Solarized Osaka Islands</b> – Dark for Islands UI (2025.3+)</li>
-          <li><b>Solarized Osaka Islands Light</b> – Light for Islands UI (2025.3+)</li>
-        </ul>
+        <h2>Solarized Osaka for JetBrains IDEs</h2>
+        <p>48 Classic and Islands UI themes across 12 Solarized Osaka palette families.</p>
+        <p>Includes a theme gallery, language-aware editor colors, custom language token mappings, VCS and console palettes, font presets, preview samples, and optional system appearance sync.</p>
+        <p>Compatible with IntelliJ Platform build 243 and newer. Islands variants require Islands UI support.</p>
+        <p>Inspired by <a href="https://github.com/craftzdog/solarized-osaka.nvim">solarized-osaka.nvim</a> by craftzdog.</p>
     ]]></description>
-
-    <change-notes><![CDATA[
-        <h3>1.1.1</h3>
-        <ul>
-          <li>Improved context menu / popup contrast (foreground, disabled items, separators)</li>
-        </ul>
-        <h3>1.1.0</h3>
-        <ul>
-          <li>Added <b>Solarized Osaka Islands</b> (Dark) for JetBrains Islands UI</li>
-          <li>Added <b>Solarized Osaka Islands Light</b> for JetBrains Islands UI</li>
-          <li>Classic themes still included for older IDEs</li>
-        </ul>
-        <h3>1.0.0</h3>
-        <ul>
-          <li>Initial release – full UI + editor schemes for Dark and Light</li>
-          <li>Accurate palette from solarized-osaka.nvim by craftzdog</li>
-          <li>Inspired by craftzdog's Solarized Osaka theme</li>
-        </ul>
-    ]]></change-notes>
-
-    <idea-version since-build="223"/>
-
+    <idea-version since-build="243" />
     <depends>com.intellij.modules.platform</depends>
-
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Classic UI themes -->
-        <themeProvider id="com.craftzdog.solarizedosaka.dark"
-                       path="/themes/SolarizedOsaka.theme.json"/>
-        <themeProvider id="com.craftzdog.solarizedosaka.light"
-                       path="/themes/SolarizedOsakaLight.theme.json"/>
-
-        <!-- Islands UI themes (2025.3+) -->
-        <themeProvider id="com.craftzdog.solarizedosaka.islands.dark"
-                       path="/themes/SolarizedOsakaIslands.theme.json"
-                       targetUi="islands"/>
-        <themeProvider id="com.craftzdog.solarizedosaka.islands.light"
-                       path="/themes/SolarizedOsakaIslandsLight.theme.json"
-                       targetUi="islands"/>
+        <notificationGroup id="SolarizedOsakaWelcome" displayType="BALLOON" isLogByDefault="false"/>
+        <postStartupActivity implementation="com.craftzdog.solarizedosaka.OsakaStartupActivity"/>
+        <themeProvider id="com.craftzdog.solarizedosaka.dark" path="/themes/SolarizedOsaka.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.light" path="/themes/SolarizedOsakaLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.islands.dark" path="/themes/SolarizedOsakaIslands.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.islands.light" path="/themes/SolarizedOsakaIslandsLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.oled" path="/themes/SolarizedOsakaOLED.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.high-contrast" path="/themes/SolarizedOsakaHighContrast.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.high-contrast-light" path="/themes/SolarizedOsakaHighContrastLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.dimmed" path="/themes/SolarizedOsakaDimmed.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.warm-light" path="/themes/SolarizedOsakaWarmLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.color-vision" path="/themes/SolarizedOsakaColorVision.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.color-vision-light" path="/themes/SolarizedOsakaColorVisionLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.teal-accent" path="/themes/SolarizedOsakaTealAccent.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.teal-accent-light" path="/themes/SolarizedOsakaTealAccentLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.purple-accent" path="/themes/SolarizedOsakaPurpleAccent.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.purple-accent-light" path="/themes/SolarizedOsakaPurpleAccentLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.amber-accent" path="/themes/SolarizedOsakaAmberAccent.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.amber-accent-light" path="/themes/SolarizedOsakaAmberAccentLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.quiet-ui" path="/themes/SolarizedOsakaQuietUI.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.quiet-ui-light" path="/themes/SolarizedOsakaQuietUILight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.oled" path="/themes/SolarizedOsakaIslandsOLED.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.high-contrast" path="/themes/SolarizedOsakaIslandsHighContrast.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.high-contrast-light" path="/themes/SolarizedOsakaIslandsHighContrastLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.color-vision" path="/themes/SolarizedOsakaIslandsColorVision.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.color-vision-light" path="/themes/SolarizedOsakaIslandsColorVisionLight.theme.json" targetUi="islands" />
+        <bundledColorScheme id="Solarized Osaka" path="/themes/SolarizedOsaka.xml" />
+        <bundledColorScheme id="Solarized Osaka Light" path="/themes/SolarizedOsakaLight.xml" />
+        <bundledColorScheme id="Solarized Osaka OLED" path="/themes/SolarizedOsakaOLED.xml" />
+        <bundledColorScheme id="Solarized Osaka High Contrast" path="/themes/SolarizedOsakaHighContrast.xml" />
+        <bundledColorScheme id="Solarized Osaka High Contrast Light" path="/themes/SolarizedOsakaHighContrastLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Dimmed" path="/themes/SolarizedOsakaDimmed.xml" />
+        <bundledColorScheme id="Solarized Osaka Warm Light" path="/themes/SolarizedOsakaWarmLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Color Vision" path="/themes/SolarizedOsakaColorVision.xml" />
+        <bundledColorScheme id="Solarized Osaka Color Vision Light" path="/themes/SolarizedOsakaColorVisionLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Teal Accent" path="/themes/SolarizedOsakaTealAccent.xml" />
+        <bundledColorScheme id="Solarized Osaka Teal Accent Light" path="/themes/SolarizedOsakaTealAccentLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Purple Accent" path="/themes/SolarizedOsakaPurpleAccent.xml" />
+        <bundledColorScheme id="Solarized Osaka Purple Accent Light" path="/themes/SolarizedOsakaPurpleAccentLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Amber Accent" path="/themes/SolarizedOsakaAmberAccent.xml" />
+        <bundledColorScheme id="Solarized Osaka Amber Accent Light" path="/themes/SolarizedOsakaAmberAccentLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Quiet UI" path="/themes/SolarizedOsakaQuietUI.xml" />
+        <bundledColorScheme id="Solarized Osaka Quiet UI Light" path="/themes/SolarizedOsakaQuietUILight.xml" />
+        <bundledColorScheme id="Solarized Osaka Vivid" path="/themes/SolarizedOsakaVivid.xml" />
+        <bundledColorScheme id="Solarized Osaka Vivid Light" path="/themes/SolarizedOsakaVividLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Muted" path="/themes/SolarizedOsakaMuted.xml" />
+        <bundledColorScheme id="Solarized Osaka Muted Light" path="/themes/SolarizedOsakaMutedLight.xml" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.dimmed" path="/themes/SolarizedOsakaIslandsDimmed.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.warm-light" path="/themes/SolarizedOsakaIslandsWarmLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.teal-accent" path="/themes/SolarizedOsakaIslandsTealAccent.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.teal-accent-light" path="/themes/SolarizedOsakaIslandsTealAccentLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.purple-accent" path="/themes/SolarizedOsakaIslandsPurpleAccent.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.purple-accent-light" path="/themes/SolarizedOsakaIslandsPurpleAccentLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.amber-accent" path="/themes/SolarizedOsakaIslandsAmberAccent.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.amber-accent-light" path="/themes/SolarizedOsakaIslandsAmberAccentLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.quiet-ui" path="/themes/SolarizedOsakaIslandsQuietUI.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.variant.islands.quiet-ui-light" path="/themes/SolarizedOsakaIslandsQuietUILight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.oled-light" path="/themes/SolarizedOsakaOLEDLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.oled-light.islands" path="/themes/SolarizedOsakaIslandsOLEDLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.dimmed-light" path="/themes/SolarizedOsakaDimmedLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.dimmed-light.islands" path="/themes/SolarizedOsakaIslandsDimmedLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.warm-dark" path="/themes/SolarizedOsakaWarmDark.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.warm-dark.islands" path="/themes/SolarizedOsakaIslandsWarmDark.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.vivid" path="/themes/SolarizedOsakaVivid.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.vivid.islands" path="/themes/SolarizedOsakaIslandsVivid.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.vivid-light" path="/themes/SolarizedOsakaVividLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.vivid-light.islands" path="/themes/SolarizedOsakaIslandsVividLight.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted" path="/themes/SolarizedOsakaMuted.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted.islands" path="/themes/SolarizedOsakaIslandsMuted.theme.json" targetUi="islands" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted-light" path="/themes/SolarizedOsakaMutedLight.theme.json" />
+        <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted-light.islands" path="/themes/SolarizedOsakaIslandsMutedLight.theme.json" targetUi="islands" />
+        <bundledColorScheme id="Solarized Osaka OLED Light" path="/themes/SolarizedOsakaOLEDLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Dimmed Light" path="/themes/SolarizedOsakaDimmedLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Warm Dark" path="/themes/SolarizedOsakaWarmDark.xml" />
+        <applicationConfigurable id="com.craftzdog.solarizedosaka.themeGallery" parentId="appearance" instance="com.craftzdog.solarizedosaka.settings.ThemeGalleryConfigurable" displayName="Solarized Osaka Theme Gallery"/>
+        <applicationConfigurable id="com.craftzdog.solarizedosaka.languageColors" parentId="editor" instance="com.craftzdog.solarizedosaka.settings.LanguageMappingsConfigurable" displayName="Solarized Osaka Language Colors"/>
+        <bundledColorScheme id="Solarized Osaka Mono Compact" path="/themes/SolarizedOsakaMonoCompact.xml" />
+        <bundledColorScheme id="Solarized Osaka Mono Relaxed" path="/themes/SolarizedOsakaMonoRelaxed.xml" />
+        <bundledColorScheme id="Solarized Osaka Mono Compact Light" path="/themes/SolarizedOsakaMonoCompactLight.xml" />
+        <bundledColorScheme id="Solarized Osaka Mono Relaxed Light" path="/themes/SolarizedOsakaMonoRelaxedLight.xml" />
     </extensions>
+    <actions>
+        <group id="com.craftzdog.solarizedosaka.Menu" text="Solarized Osaka" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </group>
+        <action id="com.craftzdog.solarizedosaka.UsageGuide"
+                class="com.craftzdog.solarizedosaka.actions.OsakaUsageGuideAction"
+                text="Solarized Osaka Usage Guide" description="Read the installation and customization guide">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="first"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.Changelog"
+                class="com.craftzdog.solarizedosaka.actions.OsakaChangelogAction"
+                text="Solarized Osaka Changelog" description="Read the changes by release">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="after"
+                          relative-to-action="com.craftzdog.solarizedosaka.UsageGuide"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.ExportSyntaxBundles"
+                class="com.craftzdog.solarizedosaka.actions.ExportSyntaxBundlesAction"
+                text="Export Solarized Osaka Syntax Bundles" description="Save the optional starter TextMate grammars">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.UndoPaletteApply" class="com.craftzdog.solarizedosaka.actions.UndoPaletteApplyAction"
+                text="Undo Last Solarized Osaka Apply" description="Restore the previous theme and editor colors">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.QuickPalette" class="com.craftzdog.solarizedosaka.actions.QuickPaletteAction"
+                text="Switch Solarized Osaka Palette" description="Open favorite and recent Solarized Osaka palettes">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.Customize" class="com.craftzdog.solarizedosaka.actions.CustomizeAction" text="Customize Solarized Osaka…" description="Create a personal theme from a Solarized Osaka preset">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.OpenThemeGallery"
+                class="com.craftzdog.solarizedosaka.actions.OpenThemeGalleryAction"
+                text="Solarized Osaka Theme Gallery"
+                description="Browse Solarized Osaka palette families and previews">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last"/>
+        </action>
+        <action id="com.craftzdog.solarizedosaka.SwitchBrightness" class="com.craftzdog.solarizedosaka.actions.SwitchOsakaBrightnessAction" text="Switch Solarized Osaka Dark/Light" description="Switch to the matching Solarized Osaka brightness variant">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
+        </action>
+        <action id="com.craftzdog.solarizedosaka.SaveProjectTheme" class="com.craftzdog.solarizedosaka.actions.SaveProjectThemeAction" text="Save Solarized Osaka Theme for Project" description="Save the current UI theme and editor scheme for this project">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
+        </action>
+        <action id="com.craftzdog.solarizedosaka.ApplyProjectTheme" class="com.craftzdog.solarizedosaka.actions.ApplyProjectThemeAction" text="Apply Saved Theme and Project Editor Scheme" description="Apply the saved UI theme IDE-wide and editor scheme to this project's editors">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
+        </action>
+        <action id="com.craftzdog.solarizedosaka.OpenPreview" class="com.craftzdog.solarizedosaka.actions.OpenOsakaPreviewAction" text="Open Solarized Osaka Preview" description="Open sample files for previewing Solarized Osaka colors">
+            <add-to-group group-id="com.craftzdog.solarizedosaka.Menu" anchor="last" />
+        </action>
+    </actions>
 </idea-plugin>

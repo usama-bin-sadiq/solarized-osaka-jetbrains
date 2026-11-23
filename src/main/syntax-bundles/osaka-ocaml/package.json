@@ -1,0 +1,29 @@
+{
+  "name": "osaka-ocaml",
+  "displayName": "OCaml (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-ocaml",
+        "aliases": [
+          "OCaml (Osaka)"
+        ],
+        "extensions": [
+          ".ml",
+          ".mli"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-ocaml",
+        "scopeName": "source.osaka-ocaml",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "R (Solarized Osaka starter)",
+  "scopeName": "source.osaka-r",
+  "patterns": [
+    {
+      "name": "comment.line.r",
+      "match": "\\#.*$"
+    },
+    {
+      "name": "string.quoted.double.r",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.r"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.r",
+      "begin": "'",
+      "end": "'"
+    },
+    {
+      "name": "keyword.control.r",
+      "match": "\\b(?:if|else|repeat|while|function|for|in|next|break)\\b"
+    },
+    {
+      "name": "constant.language.r",
+      "match": "\\b(?:TRUE|FALSE|NULL|NA|NaN|Inf)\\b"
+    },
+    {
+      "name": "storage.type.r",
+      "match": "\\b(?:character|integer|numeric|logical|list|matrix|data\\.frame)\\b"
+    },
+    {
+      "name": "constant.numeric.r",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

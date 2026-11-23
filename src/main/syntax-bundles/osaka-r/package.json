@@ -1,0 +1,34 @@
+{
+  "name": "osaka-r",
+  "displayName": "R (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-r",
+        "aliases": [
+          "R (Osaka)"
+        ],
+        "extensions": [
+          ".r",
+          ".rhistory",
+          ".rprofile"
+        ],
+        "filenames": [
+          ".Rprofile",
+          ".Rhistory"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-r",
+        "scopeName": "source.osaka-r",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

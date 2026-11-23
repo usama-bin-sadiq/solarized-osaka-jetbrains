@@ -1,0 +1,52 @@
+{
+  "name": "Pascal (Solarized Osaka starter)",
+  "scopeName": "source.osaka-pascal",
+  "patterns": [
+    {
+      "name": "comment.block.pascal",
+      "begin": "\\(\\*",
+      "end": "\\*\\)"
+    },
+    {
+      "name": "comment.block.pascal",
+      "begin": "\\{",
+      "end": "\\}"
+    },
+    {
+      "name": "comment.line.pascal",
+      "match": "//.*$"
+    },
+    {
+      "name": "string.quoted.double.pascal",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.pascal"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.pascal",
+      "begin": "'",
+      "end": "'"
+    },
+    {
+      "name": "keyword.control.pascal",
+      "match": "(?i)\\b(?:and|array|as|asm|begin|case|const|constructor|destructor|div|do|downto|else|end|file|for|function|goto|if|implementation|in|inherited|interface|is|label|mod|nil|not|object|of|on|operator|or|packed|private|procedure|program|property|protected|public|record|repeat|set|shl|shr|string|then|to|try|type|unit|until|uses|var|virtual|while|with|xor)\\b"
+    },
+    {
+      "name": "constant.language.pascal",
+      "match": "(?i)\\b(?:true|false|nil)\\b"
+    },
+    {
+      "name": "storage.type.pascal",
+      "match": "(?i)\\b(?:integer|cardinal|boolean|char|real|double|ansistring)\\b"
+    },
+    {
+      "name": "constant.numeric.pascal",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

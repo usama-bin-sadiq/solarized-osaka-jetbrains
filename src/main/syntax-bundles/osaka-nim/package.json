@@ -1,0 +1,28 @@
+{
+  "name": "osaka-nim",
+  "displayName": "Nim (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-nim",
+        "aliases": [
+          "Nim (Osaka)"
+        ],
+        "extensions": [
+          ".nim"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-nim",
+        "scopeName": "source.osaka-nim",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

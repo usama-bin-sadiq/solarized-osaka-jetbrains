@@ -1,0 +1,29 @@
+{
+  "name": "osaka-pascal",
+  "displayName": "Pascal (Solarized Osaka starter)",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "osaka-pascal",
+        "aliases": [
+          "Pascal (Osaka)"
+        ],
+        "extensions": [
+          ".pas",
+          ".pp"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "osaka-pascal",
+        "scopeName": "source.osaka-pascal",
+        "path": "./syntaxes/grammar.tmLanguage.json"
+      }
+    ]
+  }
+}

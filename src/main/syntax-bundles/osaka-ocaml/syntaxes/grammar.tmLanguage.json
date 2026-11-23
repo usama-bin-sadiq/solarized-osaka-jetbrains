@@ -1,0 +1,38 @@
+{
+  "name": "OCaml (Solarized Osaka starter)",
+  "scopeName": "source.osaka-ocaml",
+  "patterns": [
+    {
+      "name": "comment.block.ocaml",
+      "begin": "\\(\\*",
+      "end": "\\*\\)"
+    },
+    {
+      "name": "string.quoted.double.ocaml",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.ocaml"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.ocaml",
+      "match": "\\b(?:and|as|assert|begin|class|constraint|do|done|downto|else|end|exception|external|for|fun|function|functor|if|in|include|inherit|initializer|lazy|let|match|method|module|mutable|new|nonrec|object|of|open|private|rec|sig|struct|then|to|try|type|val|virtual|when|while|with)\\b"
+    },
+    {
+      "name": "constant.language.ocaml",
+      "match": "\\b(?:true|false|None)\\b"
+    },
+    {
+      "name": "storage.type.ocaml",
+      "match": "\\b(?:int|float|bool|char|string|unit|list|option|array)\\b"
+    },
+    {
+      "name": "constant.numeric.ocaml",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

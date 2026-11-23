@@ -1,0 +1,37 @@
+{
+  "name": "Zig (Solarized Osaka starter)",
+  "scopeName": "source.osaka-zig",
+  "patterns": [
+    {
+      "name": "comment.line.zig",
+      "match": "//.*$"
+    },
+    {
+      "name": "string.quoted.double.zig",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.zig"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.zig",
+      "match": "\\b(?:addrspace|align|allowzero|and|anyframe|asm|async|await|break|callconv|catch|comptime|const|continue|defer|else|enum|errdefer|error|export|extern|fn|for|if|inline|noalias|nosuspend|opaque|or|orelse|packed|pub|resume|return|linksection|struct|suspend|switch|test|threadlocal|try|union|unreachable|usingnamespace|var|volatile|while)\\b"
+    },
+    {
+      "name": "constant.language.zig",
+      "match": "\\b(?:true|false|null|undefined)\\b"
+    },
+    {
+      "name": "storage.type.zig",
+      "match": "\\b(?:usize|isize|u8|u16|u32|u64|i8|i16|i32|i64|bool|f32|f64|void|noreturn|type|anyerror)\\b"
+    },
+    {
+      "name": "constant.numeric.zig",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Haskell (Solarized Osaka starter)",
+  "scopeName": "source.osaka-haskell",
+  "patterns": [
+    {
+      "name": "comment.block.haskell",
+      "begin": "\\{\\-",
+      "end": "\\-\\}"
+    },
+    {
+      "name": "comment.line.haskell",
+      "match": "\\-\\-.*$"
+    },
+    {
+      "name": "string.quoted.double.haskell",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.haskell"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.haskell",
+      "match": "\\b(?:case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where)\\b"
+    },
+    {
+      "name": "constant.language.haskell",
+      "match": "\\b(?:True|False|Nothing)\\b"
+    },
+    {
+      "name": "storage.type.haskell",
+      "match": "\\b(?:Int|Integer|Float|Double|Bool|String|Char|Maybe|IO)\\b"
+    },
+    {
+      "name": "constant.numeric.haskell",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}

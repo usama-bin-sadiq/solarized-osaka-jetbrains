@@ -1,0 +1,37 @@
+{
+  "name": "Elixir (Solarized Osaka starter)",
+  "scopeName": "source.osaka-elixir",
+  "patterns": [
+    {
+      "name": "comment.line.elixir",
+      "match": "\\#.*$"
+    },
+    {
+      "name": "string.quoted.double.elixir",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.elixir"
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.elixir",
+      "match": "\\b(?:def|defp|defmodule|defstruct|defprotocol|defimpl|do|end|fn|else|rescue|catch|after|when|with|case|cond|for|import|alias|require|use|quote|unquote|try|receive|if|unless)\\b"
+    },
+    {
+      "name": "constant.language.elixir",
+      "match": "\\b(?:true|false|nil)\\b"
+    },
+    {
+      "name": "storage.type.elixir",
+      "match": "\\b(?:Enum|String|Map|List|Kernel|Integer|Tuple)\\b"
+    },
+    {
+      "name": "constant.numeric.elixir",
+      "match": "\\b(?:0[xX][0-9a-fA-F_]+|\\d[\\d_]*(?:\\.\\d[\\d_]*)?)\\b"
+    }
+  ]
+}
