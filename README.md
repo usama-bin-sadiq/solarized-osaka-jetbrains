@@ -11,7 +11,7 @@ Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/) when av
 1. Open **Settings → Plugins**.
 2. Select the gear menu and choose **Install Plugin from Disk…**.
 3. Select the plugin archive and restart if the IDE requests it.
-4. Choose a Solarized Osaka variant in **Settings → Appearance & Behavior → Appearance → Theme**.
+4. On IDEs with Islands support, a fresh install without a restart selects **Solarized Osaka Islands** when **Sync with OS** is off. To choose a variant, open **Settings → Appearance & Behavior → Appearance → Theme**.
 
 ## Quick start
 
@@ -56,7 +56,7 @@ The plugin includes 12 palette families, each available in Classic Dark, Classic
 | Vivid | Brighter accents |
 | Muted | Softer accents |
 
-Open the **Solarized Osaka Theme Gallery** in Settings to compare color swatches, UI styles and code previews. Use **Appearance → Theme** to apply the selected preset. The plugin offers the gallery once on first launch.
+Open the **Solarized Osaka Theme Gallery** in Settings to compare swatches and preview each preset’s actual JSON syntax colors. Use **Appearance → Theme** to apply the selected preset. The plugin offers the gallery once on first launch.
 
 ## Editor features
 
@@ -86,7 +86,7 @@ Requires JDK 21. The repository includes a Gradle 8.13 wrapper:
 
 The plugin archive is written under `build/distributions/`. CI checks theme assets, contrast and plugin compatibility for the seven IDE targets in the verification workflow.
 
-On macOS with WebStorm 2026.3 and a JDK that can read its Java 25 classes, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.3.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and menu checks.
+On macOS with WebStorm 2026.3 and a JDK that can read its Java 25 classes, run `bash scripts/audit-webstorm.sh build/distributions/solarized-osaka-intellij-1.7.5.zip` to repeat the isolated runtime sweep. Its output includes the filename × scheme matrix, semantic JSON key checks, palette button contrast and menu checks.
 
 ## Run and publish
 

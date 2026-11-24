@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import sys
 import xml.etree.ElementTree as ET
+from theme_readability import caret_row_inks, contrast, editor_text_surfaces, ui_text_surfaces
 
 root = Path(__file__).resolve().parents[1]
 resources = root / 'src/main/resources'
@@ -32,18 +33,35 @@ def color(root_el, key, prop, section='attributes'):
     value = option.find(f"./value/option[@name='{prop}']")
     return value.get('value') if value is not None else None
 
-def luminance(value):
-    rgb = [int(value[i:i + 2], 16) / 255 for i in (0, 2, 4)]
-    rgb = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
-    return .2126 * rgb[0] + .7152 * rgb[1] + .0722 * rgb[2]
-
-def contrast(a, b):
-    hi, lo = sorted((luminance(a), luminance(b)), reverse=True)
-    return (hi + .05) / (lo + .05)
+classic_selections = {
+    'SolarizedOsaka': ('1a6397', 'fdf5e2'),
+    'SolarizedOsakaLight': ('b8d4e8', '002c38'),
+}
+classic_editor_styles = ('SolarizedOsaka', 'SolarizedOsakaMonoCompact', 'SolarizedOsakaMonoRelaxed')
+classic_inks = {
+    'DEFAULT_KEYWORD': ('df5419', 'bd4715'),
+    'DEFAULT_STRING': ('29a298', '1f7a73'),
+    'DEFAULT_NUMBER': ('d74f91', 'c82d78'),
+    'DEFAULT_CLASS_NAME': ('b28500', '8c6800'),
+    'DEFAULT_FUNCTION_DECLARATION': ('268bd3', '1f72ad'),
+    'JSON.PROPERTY_KEY': ('268bd3', '1f72ad'),
+    'JSON.STRING': ('29a298', '1f7a73'),
+}
 
 for path in theme_files:
     data = json.loads(path.read_text())
     ui = data['ui']
+    for foreground, backgrounds in ui_text_surfaces(ui).items():
+        for background in backgrounds:
+            if contrast(ui[foreground], ui[background]) < 4.5:
+                issues.append(f'{path.name}: {foreground} on {background} is below 4.5:1')
+    classic_theme = path.name.removesuffix('.theme.json').replace('Islands', '')
+    if classic_theme in classic_selections:
+        expected = tuple('#' + value for value in classic_selections[classic_theme])
+        for widget in ('Editor', 'Tree', 'MenuItem'):
+            actual = (ui.get(f'{widget}.selectionBackground'), ui.get(f'{widget}.selectionForeground'))
+            if actual != expected:
+                issues.append(f'{path.name}: {widget} does not use the Classic selection colors')
     for widget in ('Tree', 'List', 'Menu', 'MenuItem', 'PopupMenu', 'CompletionPopup'):
         for surface, ink in [('selectionBackground', 'selectionForeground'), ('hoverBackground', 'foreground'),
                              ('selectionInactiveBackground', 'selectionInactiveForeground')]:
@@ -100,20 +118,35 @@ for path in scheme_files:
     if '/themes/' + path.name not in scheme_paths:
         issues.append(f'unregistered editor scheme: {path.name}')
     bg = color(scheme, 'TEXT', 'BACKGROUND')
+    for role, ink, surface in editor_text_surfaces(scheme):
+        if contrast(ink, surface) < 4.5:
+            issues.append(f'{path.name}: {role} is below 4.5:1 against its background')
+    caret = color(scheme, 'CARET_ROW_COLOR', 'value', section='colors')
+    line_number = color(scheme, 'LINE_NUMBER_ON_CARET_ROW_COLOR', 'value', section='colors')
+    if not caret or caret == bg or not line_number or contrast(line_number, caret) < 4.5:
+        issues.append(f'{path.name}: active line or line number is missing or unreadable')
+    elif any(contrast(ink, caret) < 4.5 for _, ink in caret_row_inks(scheme)):
+        issues.append(f'{path.name}: active line syntax contrast is below 4.5:1')
     comment = color(scheme, 'DEFAULT_LINE_COMMENT', 'FOREGROUND')
-    if 'ColorVision' in path.name or 'TealAccent' in path.name:
-        json_key = color(scheme, 'JSON.PROPERTY_KEY', 'FOREGROUND')
-        json_string = color(scheme, 'JSON.STRING', 'FOREGROUND') or color(scheme, 'DEFAULT_STRING', 'FOREGROUND')
-        if json_key and json_string and json_key.lower() == json_string.lower():
-            issues.append(f'JSON keys and string values share a color in {path.name}')
-        if bg and json_string and contrast(bg, json_string) < 4.5:
-            issues.append(f'JSON string contrast below 4.5:1 in {path.name}')
+    json_key = color(scheme, 'JSON.PROPERTY_KEY', 'FOREGROUND')
+    json_string = color(scheme, 'JSON.STRING', 'FOREGROUND')
+    if not json_key or not json_string or json_key.lower() == json_string.lower():
+        issues.append(f'{path.name}: JSON keys and string values must have distinct colors')
     if bg and comment and contrast(bg, comment) < 4.5:
         issues.append(f'comment contrast below 4.5:1 in {path.name}')
     selection_bg = color(scheme, 'SELECTION_BACKGROUND', 'value', section='colors')
     selection_fg = color(scheme, 'SELECTION_FOREGROUND', 'value', section='colors')
     if selection_bg and selection_fg and contrast(selection_bg, selection_fg) < 4.5:
         issues.append(f'selection contrast below 4.5:1 in {path.name}')
+    if path.stem.removesuffix('Light') in classic_editor_styles:
+        light = path.stem.endswith('Light')
+        for role, shades in classic_inks.items():
+            actual = color(scheme, role, 'FOREGROUND')
+            if actual != shades[light] or not bg or contrast(bg, actual) < 4.5:
+                issues.append(f'{path.name}: {role} does not use the readable Classic palette color')
+        classic_theme = 'SolarizedOsakaLight' if light else 'SolarizedOsaka'
+        if (selection_bg, selection_fg) != classic_selections[classic_theme]:
+            issues.append(f'{path.name}: editor selection differs from the Classic UI')
     for attr in ('CUSTOM_LINE_COMMENT_ATTRIBUTES', 'CUSTOM_STRING_ATTRIBUTES', 'PROPERTIES.KEY_VALUE_SEPARATOR'):
         ink = color(scheme, attr, 'FOREGROUND')
         if not ink or not bg or contrast(ink, bg) < 4.5:
@@ -146,6 +179,8 @@ for path in scheme_files:
 
 if len(theme_files) != 48 or len(providers) != 48:
     issues.append(f'expected 48 registered themes, found {len(theme_files)} files and {len(providers)} registrations')
+if not providers or providers[-1].get('id') != 'com.craftzdog.solarizedosaka.islands.dark':
+    issues.append('Islands Dark must be registered last for first-install selection')
 if len(provider_ids) != len(set(provider_ids)):
     issues.append('duplicate theme provider IDs')
 if len(scheme_ids) != len(set(scheme_ids)):

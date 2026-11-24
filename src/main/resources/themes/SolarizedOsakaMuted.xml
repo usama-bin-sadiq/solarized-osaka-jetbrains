@@ -11,7 +11,7 @@
     <option name="ADDED_LINES_COLOR" value="9eaa5c" />
     <option name="ANNOTATIONS_COLOR" value="576d74" />
     <option name="CARET_COLOR" value="839395" />
-    <option name="CARET_ROW_COLOR" value="002c38" />
+    <option name="CARET_ROW_COLOR" value="001c23" />
     <option name="CONSOLE_BACKGROUND_KEY" value="001419" />
     <option name="DELETED_LINES_COLOR" value="db302d" />
     <option name="DIFF_SEPARATORS_BACKGROUND" value="002c38" />
@@ -83,14 +83,14 @@
     <!-- Keywords -->
     <option name="DEFAULT_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <!-- Strings -->
     <option name="DEFAULT_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="DEFAULT_VALID_STRING_ESCAPE">
@@ -100,44 +100,44 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <!-- Numbers -->
     <option name="DEFAULT_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <!-- Comments -->
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG_VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="DEFAULT_DOC_MARKUP">
@@ -184,38 +184,38 @@
     <!-- Classes / Types -->
     <option name="DEFAULT_CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="DEFAULT_INTERFACE_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="DEFAULT_CLASS_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <!-- Functions / Methods -->
     <option name="DEFAULT_FUNCTION_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="DEFAULT_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="DEFAULT_STATIC_METHOD">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="DEFAULT_INSTANCE_METHOD">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <!-- Variables / Parameters -->
@@ -246,38 +246,38 @@
     </option>
     <option name="DEFAULT_CONSTANT">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <!-- Labels / Metadata -->
     <option name="DEFAULT_LABEL">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="DEFAULT_METADATA">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
       </value>
     </option>
     <option name="DEFAULT_PREDEFINED_SYMBOL">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="DEFAULT_ATTRIBUTE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="DEFAULT_TAG">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="DEFAULT_ENTITY">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <!-- Templates -->
@@ -430,13 +430,13 @@
     </option>
     <option name="TEMPLATE_VARIABLE_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <!-- TODO / FIXME -->
     <option name="TODO_DEFAULT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
@@ -450,21 +450,21 @@
     </option>
     <option name="UNMATCHED_BRACE_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <!-- Hyperlinks -->
     <option name="HYPERLINK_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
         <option name="EFFECT_COLOR" value="5d9ac5" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="FOLLOWED_HYPERLINK_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
         <option name="EFFECT_COLOR" value="888bc7" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
@@ -483,41 +483,41 @@
     <!-- Java specific (common ones) -->
     <option name="JAVA_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="JAVA_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="JAVA_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="JAVA_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="JAVA_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="JAVA_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="JAVA_DOC_TAG">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
@@ -528,104 +528,104 @@
     </option>
     <option name="JAVA_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <!-- Kotlin -->
     <option name="KOTLIN_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="KOTLIN_NAMED_ARGUMENT">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <!-- XML / HTML -->
     <option name="XML_TAG">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="XML_TAG_NAME">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="XML_ATTRIBUTE_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="XML_ATTRIBUTE_VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="XML_ENTITY_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="XML_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="HTML_TAG">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="HTML_TAG_NAME">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="HTML_ATTRIBUTE_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="HTML_ATTRIBUTE_VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="HTML_ENTITY_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="HTML_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <!-- CSS -->
     <option name="CSS.PROPERTY_NAME">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CSS.PROPERTY_VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="CSS.TAG_NAME">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="CSS.CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="CSS.IDENT">
@@ -635,13 +635,13 @@
     </option>
     <option name="CSS.IMPORTANT">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="CSS.URL">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
         <option name="EFFECT_COLOR" value="55a49b" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
@@ -649,64 +649,64 @@
     <!-- JSON -->
     <option name="JSON.STRING">
       <value>
-        <option name="FOREGROUND" value="d19777" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="JSON.PROPERTY_KEY">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="JSON.KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <!-- YAML -->
     <option name="YAML_SCALAR_KEY">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="YAML_SCALAR_VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="YAML_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <!-- Markdown -->
     <option name="MARKDOWN_HEADER">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="MARKDOWN_BOLD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="MARKDOWN_ITALIC">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="MARKDOWN_CODE_SPAN">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="409d95" />
         <option name="BACKGROUND" value="002c38" />
       </value>
     </option>
     <option name="MARKDOWN_LINK">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
         <option name="EFFECT_COLOR" value="5d9ac5" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
@@ -815,50 +815,50 @@
     </option>
       <option name="PY.KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
       <option name="PY.STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
       <option name="PY.NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
       <option name="PY.LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
       <option name="PY.DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
       <option name="PY.CLASS_DEFINITION">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
       <option name="PY.FUNC_DEFINITION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
       <option name="PY.BUILTIN_NAME">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
       <option name="PY.DECORATOR">
       <value>
-        <option name="FOREGROUND" value="888bc7" />
+        <option name="FOREGROUND" value="7f82ba" />
       </value>
     </option>
       <option name="PY.VALID_STRING_ESCAPE">
@@ -868,13 +868,13 @@
     </option>
       <option name="PY.INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
       <option name="PY.PREDEFINED_USAGE">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
       <option name="JS.GLOBAL_VARIABLE">
@@ -894,637 +894,637 @@
     </option>
       <option name="JS.INSTANCE_MEMBER_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
       <option name="JS.REGEXP">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
       <option name="BASH.EXTERNAL_COMMAND">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="BASH.INTERNAL_COMMAND">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="CPP_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="CSHARP_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="C_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="DART_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="GO_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="GROOVY_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="JAVA_CONTROL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="OC.CPP_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="OC.KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="PHP_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="RUBY_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="RUST_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="SCALA_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="SQL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="TS.TYPE_GUARD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="TS.TYPE_PARAMETER">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="YAML_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="BASH.HERE_DOC_END">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="BASH.HERE_DOC_START">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="CPP_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="CSHARP_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="C_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="DART_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="GO_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="GROOVY_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="KOTLIN_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="OC.STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="PHP_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="PROPERTIES.VALUE">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="RUBY_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="RUST_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="SCALA_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="SQL_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="YAML_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="CPP_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="CSHARP_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="C_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="DART_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="GO_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="GROOVY_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="KOTLIN_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="OC.NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="PHP_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="RUBY_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="RUST_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="SCALA_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="SQL_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="BASH.SHEBANG">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CPP_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CPP_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CSHARP_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CSHARP_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="C_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="C_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="DART_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="GO_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="GO_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="GROOVY_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="KOTLIN_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="KOTLIN_KDOC">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="KOTLIN_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="OC.BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="OC.LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PHP_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PHP_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PHP_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PROPERTIES.LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="RUBY_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="RUST_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="RUST_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="RUST_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="SCALA_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="SCALA_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="SQL_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CPP_CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="CSHARP_CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="C_CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="DART_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="GO_TYPE_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="GROOVY_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="JAVA_CLASS_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="JAVA_ENUM_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="JAVA_INTERFACE_NAME">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="KOTLIN_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="KOTLIN_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="OC.STRUCT_FIELD">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="PHP_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="PHP_INTERFACE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="RUBY_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="RUST_ENUM">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="RUST_STRUCT">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="RUST_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="SCALA_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="SCALA_TRAIT">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="SQL_TABLE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="SQL_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="YAML_TAG">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="BASH.FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="BASH.FUNCTION_DEF_NAME">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CPP_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CSHARP_METHOD_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CSS.FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="C_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="DART_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="GO_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="GO_FUNCTION_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="GROOVY_METHOD_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="JAVA_METHOD_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="JAVA_METHOD_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="KOTLIN_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="KOTLIN_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="OC.METHOD_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="PHP_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="PHP_FUNCTION_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="RUBY_METHOD">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="RUST_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="RUST_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="SCALA_METHOD_CALL">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="SQL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="XPATH.FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CPP_LOCAL_VARIABLE">
@@ -1694,82 +1694,82 @@
     </option>
     <option name="BASH.BINARY_DATA">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="CPP_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="CSHARP_ATTRIBUTE">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="C_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="DART_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="GO_BUILTIN_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="GROOVY_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="JAVA_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="JS.GLOBAL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="KOTLIN_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="OC.MACRONAME">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="PHP_ATTRIBUTE">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="RUBY_CONSTANT">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="RUST_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="SCALA_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="SQL_SYSTEM_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="GO_VALID_STRING_ESCAPE">
@@ -1804,637 +1804,637 @@
     </option>
     <option name="KOTLIN_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
       </value>
     </option>
     <option name="PROPERTIES.INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
       </value>
     </option>
     <option name="RUST_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="d4504d" />
+        <option name="FOREGROUND" value="d65a57" />
       </value>
     </option>
       <option name="CLOJURE_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="ELIXIR_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="ERLANG_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="FORTRAN_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="F_SHARP_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="HASKELL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="HCL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="JULIA_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="LUA_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="NIM_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="NIX_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="OCAML_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="PERL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="PONY_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="POWERSHELL_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="R_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="SOLIDITY_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="TERRAFORM_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="V_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="ZIG_KEYWORD">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="CLOJURE_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="ELIXIR_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="ERLANG_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="FORTRAN_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="F_SHARP_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="HASKELL_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="HCL_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="JULIA_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="LUA_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="NIM_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="NIX_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="OCAML_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="PERL_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="PONY_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="POWERSHELL_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="R_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="SOLIDITY_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="TERRAFORM_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="V_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="ZIG_STRING">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="CLOJURE_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="ELIXIR_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="ERLANG_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="FORTRAN_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="F_SHARP_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="HASKELL_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="HCL_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="JULIA_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="LUA_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="NIM_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="NIX_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="OCAML_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="PERL_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="PONY_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="POWERSHELL_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="R_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="SOLIDITY_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="TERRAFORM_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="V_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="ZIG_NUMBER">
       <value>
-        <option name="FOREGROUND" value="b26786" />
+        <option name="FOREGROUND" value="c26291" />
       </value>
     </option>
     <option name="CLOJURE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="ELIXIR_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="ERLANG_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="FORTRAN_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="F_SHARP_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="HASKELL_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="HCL_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="JULIA_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="LUA_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="NIM_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="NIX_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="OCAML_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PERL_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="PONY_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="POWERSHELL_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="R_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="SOLIDITY_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="TERRAFORM_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="V_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="ZIG_COMMENT">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CLOJURE_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="ELIXIR_MODULE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="ERLANG_MODULE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="FORTRAN_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="F_SHARP_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="HASKELL_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="HCL_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="JULIA_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="LUA_CLASS">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="NIM_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="NIX_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="OCAML_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="PERL_PACKAGE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="PONY_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="POWERSHELL_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="R_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="SOLIDITY_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="TERRAFORM_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="V_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="ZIG_TYPE">
       <value>
-        <option name="FOREGROUND" value="ae8817" />
+        <option name="FOREGROUND" value="a07f1d" />
       </value>
     </option>
     <option name="CLOJURE_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="ELIXIR_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="ERLANG_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="FORTRAN_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="F_SHARP_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="HASKELL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="HCL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="JULIA_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="LUA_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="NIM_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="NIX_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="OCAML_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="PERL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="PONY_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="POWERSHELL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="R_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="SOLIDITY_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="TERRAFORM_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="V_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="ZIG_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="679abd" />
+        <option name="FOREGROUND" value="4087b9" />
       </value>
     </option>
     <option name="CLOJURE_VARIABLE">
@@ -2539,102 +2539,102 @@
     </option>
     <option name="CLOJURE_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="ELIXIR_ATTRIBUTE">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="ERLANG_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="FORTRAN_INTRINSIC">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="F_SHARP_UNION_CASE">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="HASKELL_PRAGMA">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="HCL_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="JULIA_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="LUA_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="NIM_MACRO">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="NIX_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="OCAML_CONSTRUCTOR">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="PERL_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="PONY_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="POWERSHELL_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="R_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="SOLIDITY_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="TERRAFORM_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="V_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
     <option name="ZIG_BUILTIN">
       <value>
-        <option name="FOREGROUND" value="b77c61" />
+        <option name="FOREGROUND" value="c8663c" />
       </value>
     </option>
       <option name="CONSOLE_BLACK_OUTPUT">
@@ -2684,12 +2684,12 @@
     </option>
     <option name="CUSTOM_LINE_COMMENT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="6d8086" />
+        <option name="FOREGROUND" value="72858c" />
       </value>
     </option>
     <option name="CUSTOM_STRING_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="55a49b" />
+        <option name="FOREGROUND" value="3b9089" />
       </value>
     </option>
     <option name="PROPERTIES.KEY_VALUE_SEPARATOR">

@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.7.5
+
+### Fixed
+
+- Derived the variant syntax colors from Classic Osaka, with family accents and light or dark adjustments. JSON keys and strings use distinct colors in every bundled scheme.
+- Improved text contrast across editor highlights, the active line, menus, buttons, completion popups, tooltips, and other bundled IDE surfaces.
+- Made Solarized Osaka Islands Dark the theme selected by the IDE on a fresh dynamic installation, when Islands is supported and system appearance sync is off.
+
+## 1.7.4
+
+### Fixed
+
+- Restored the original Osaka color roles and blue selection colors in the four Classic themes. Orange keywords, cyan strings, magenta numbers, ochre types, and blue functions use the original colors or nearby shades with readable contrast.
+- Matched the Mono Compact and Mono Relaxed editor schemes to Classic. Blue JSON keys and cyan string values are distinct in both modes.
+- The theme gallery previews the selected preset’s actual editor colors.
+
 ## 1.7.3
 
 ### Fixed

@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.craftzdog.solarizedosaka</id>
     <name>Solarized Osaka</name>
-    <version>1.7.3</version>
+    <version>1.7.5</version>
     <vendor url="https://github.com/craftzdog/solarized-osaka.nvim">craftzdog inspired</vendor>
     <description><![CDATA[
         <h2>Solarized Osaka for JetBrains IDEs</h2>
@@ -18,7 +18,6 @@
         <postStartupActivity implementation="com.craftzdog.solarizedosaka.OsakaStartupActivity"/>
         <themeProvider id="com.craftzdog.solarizedosaka.dark" path="/themes/SolarizedOsaka.theme.json" />
         <themeProvider id="com.craftzdog.solarizedosaka.light" path="/themes/SolarizedOsakaLight.theme.json" />
-        <themeProvider id="com.craftzdog.solarizedosaka.islands.dark" path="/themes/SolarizedOsakaIslands.theme.json" targetUi="islands" />
         <themeProvider id="com.craftzdog.solarizedosaka.islands.light" path="/themes/SolarizedOsakaIslandsLight.theme.json" targetUi="islands" />
         <themeProvider id="com.craftzdog.solarizedosaka.variant.oled" path="/themes/SolarizedOsakaOLED.theme.json" />
         <themeProvider id="com.craftzdog.solarizedosaka.variant.high-contrast" path="/themes/SolarizedOsakaHighContrast.theme.json" />
@@ -85,6 +84,8 @@
         <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted.islands" path="/themes/SolarizedOsakaIslandsMuted.theme.json" targetUi="islands" />
         <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted-light" path="/themes/SolarizedOsakaMutedLight.theme.json" />
         <themeProvider id="com.craftzdog.solarizedosaka.quadrant.muted-light.islands" path="/themes/SolarizedOsakaIslandsMutedLight.theme.json" targetUi="islands" />
+        <!-- The IDE applies the last newly registered theme on dynamic installation. -->
+        <themeProvider id="com.craftzdog.solarizedosaka.islands.dark" path="/themes/SolarizedOsakaIslands.theme.json" targetUi="islands" />
         <bundledColorScheme id="Solarized Osaka OLED Light" path="/themes/SolarizedOsakaOLEDLight.xml" />
         <bundledColorScheme id="Solarized Osaka Dimmed Light" path="/themes/SolarizedOsakaDimmedLight.xml" />
         <bundledColorScheme id="Solarized Osaka Warm Dark" path="/themes/SolarizedOsakaWarmDark.xml" />

@@ -284,9 +284,16 @@ public class Review implements StartupActivity.DumbAware {
         try(var writer = new PrintWriter(Files.newBufferedWriter(dir.resolve("palette-buttons.csv")))){
             writer.println(csv("Theme","Palette buttons","Buttons with opaque white text","Filled button contrast"));
             for(String theme : List.of("Solarized Osaka", "Solarized Osaka Light",
+                    "Solarized Osaka Islands", "Solarized Osaka Islands Light",
                     "Solarized Osaka Islands Quiet UI", "Solarized Osaka Islands Quiet UI Light")){
                 selectNativePreset(presets.get(theme));
                 var root = new com.craftzdog.solarizedosaka.settings.ThemeGalleryConfigurable().createComponent();
+                var scheme = EditorColorsManager.getInstance().getGlobalScheme();
+                var key = scheme.getAttributes(TextAttributesKey.find("JSON.PROPERTY_KEY")).getForegroundColor();
+                var value = scheme.getAttributes(TextAttributesKey.find("JSON.STRING")).getForegroundColor();
+                if (!key.equals(labelInk(root, "    \"theme\"")) ||
+                    !value.equals(labelInk(root, "\"Solarized Osaka\"")))
+                    throw new Error("Gallery preview differs from editor syntax colors for " + theme);
                 var buttons = new ArrayList<javax.swing.JToggleButton>();
                 collectPaletteButtons(root,buttons);
                 int readable=0;
@@ -314,6 +321,18 @@ public class Review implements StartupActivity.DumbAware {
             !PersonalThemes.Companion.instance().resolveSchemeName("Solarized Osaka Glass").equals("Solarized Osaka Quiet UI")){
             throw new Error("Removed palette data did not migrate");
         }
+    }
+
+    private static Color labelInk(java.awt.Component component, String text) {
+        if (component instanceof javax.swing.JLabel label && text.equals(label.getText()))
+            return label.getForeground();
+        if (component instanceof java.awt.Container container) {
+            for (var child : container.getComponents()) {
+                var ink = labelInk(child, text);
+                if (ink != null) return ink;
+            }
+        }
+        return null;
     }
 
     private void collectPaletteButtons(java.awt.Component component, List<javax.swing.JToggleButton> buttons) {

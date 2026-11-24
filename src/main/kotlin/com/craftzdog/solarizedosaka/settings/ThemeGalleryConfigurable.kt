@@ -1,6 +1,8 @@
 package com.craftzdog.solarizedosaka.settings
 
 import com.craftzdog.solarizedosaka.ThemeCatalog
+import com.craftzdog.solarizedosaka.actions.PersonalPalette
+import com.craftzdog.solarizedosaka.actions.PersonalThemes
 import com.intellij.openapi.options.SearchableConfigurable
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
@@ -8,6 +10,7 @@ import com.intellij.ui.components.JBScrollPane
 import com.intellij.util.ui.JBUI
 import java.awt.BorderLayout
 import java.awt.Color
+import java.awt.FlowLayout
 import java.awt.Font
 import java.awt.GridLayout
 import java.awt.Graphics
@@ -26,7 +29,8 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
     private var uiStyle: JComboBox<String>? = null
     private var preview: JPanel? = null
     private var instructions: JLabel? = null
-    private var previewLabels: List<JLabel> = emptyList()
+    private var previewLabels: List<Pair<JLabel, String>> = emptyList()
+    private val previewColors = mutableMapOf<String, Map<String, Color>>()
 
     override fun getDisplayName(): String = "Solarized Osaka Theme Gallery"
     override fun getId(): String = "com.craftzdog.solarizedosaka.themeGallery"
@@ -60,14 +64,21 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
         val sample = JPanel(GridLayout(0, 1, 0, JBUI.scale(4)))
         sample.border = JBUI.Borders.empty(12)
         val code = listOf(
-            JLabel("fun main() {"),
-            JLabel("    val theme = \"Solarized Osaka\""),
-            JLabel("    println(theme) // preview syntax colors"),
-            JLabel("}")
+            listOf("{" to "Code text"),
+            listOf("    \"theme\"" to "JSON key", ": " to "Code text", "\"Solarized Osaka\"" to "JSON string"),
+            listOf("}" to "Code text", "  // palette preview" to "Comment")
         )
-        code.forEach { it.font = Font(Font.MONOSPACED, Font.PLAIN, 13); sample.add(it) }
+        val font = Font(Font.MONOSPACED, Font.PLAIN, 13)
+        previewLabels = code.flatMap { line ->
+            val row = JPanel(FlowLayout(FlowLayout.LEADING, 0, 0)).apply { isOpaque = false }
+            sample.add(row)
+            line.map { (text, role) ->
+                val label = JLabel(text).apply { this.font = font }
+                row.add(label)
+                label to role
+            }
+        }
         preview = sample
-        previewLabels = code
         val previewContainer = JPanel(BorderLayout())
         previewContainer.add(JBLabel("Palette preview"), BorderLayout.NORTH)
         previewContainer.add(sample, BorderLayout.CENTER)
@@ -110,21 +121,20 @@ class ThemeGalleryConfigurable : SearchableConfigurable {
 
     private fun updatePreview() {
         val family = familyButtons.entries.firstOrNull { it.value.isSelected }?.key ?: "Classic"
-        val swatch = ThemeCatalog.swatches[family] ?: return
         val isDark = mode?.selectedItem != "Light"
-        val background = Color(if (isDark) swatch.darkBackground else swatch.lightBackground)
-        val foreground = Color(if (isDark) 0xD4E0E0 else 0x33464C)
-        val accent = Color(swatch.accent)
         familyButtons.forEach { (name, button) ->
             val colors = ThemeCatalog.swatches.getValue(name)
             button.setSwatch(Color(if (isDark) colors.darkBackground else colors.lightBackground), Color(colors.accent))
             button.isSelected = name == family
         }
-        preview?.background = background
-        previewLabels.forEachIndexed { index, label ->
-            label.foreground = when (index) { 0 -> accent; 2 -> Color(if (isDark) 0x93A1A1 else 0x687C80); else -> foreground }
+        val presetName = selectedThemeName()
+        val preset = PersonalThemes.preset(presetName) ?: return
+        val colors = previewColors.getOrPut(presetName) { PersonalPalette(preset).defaults }
+        preview?.background = colors.getValue("Editor")
+        for ((label, role) in previewLabels) {
+            label.foreground = colors.getValue(role)
         }
-        instructions?.text = "To use this preset, select “${selectedThemeName()}” in Appearance → Theme."
+        instructions?.text = "To use this preset, select “$presetName” in Appearance → Theme."
         preview?.repaint()
     }
 }
